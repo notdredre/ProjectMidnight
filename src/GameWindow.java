@@ -11,6 +11,7 @@ public class GameWindow extends JFrame {
         gamePanel = new GamePanel();
         add(gamePanel);
         setVisible(true);
+        gamePanel.requestFocus();
         gamePanel.startThread();
     }
 }
