@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import game.GameManager;
+import game.InputHandler;
 import game.Player;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -14,6 +15,8 @@ public class GamePanel extends JPanel implements Runnable {
         gameManager = GameManager.getGameManager();
         frameBuffer = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         Player p = new Player();
+        addKeyListener(new InputHandler(p));
+        gameManager.startTicking();
         runThread = new Thread(this);
     }
 
@@ -23,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void run() {
         try {
             while(true) {
+                requestFocus();
                 gameManager.update();
                 Graphics2D f2 = (Graphics2D) frameBuffer.getGraphics();
                 f2.setColor(Color.BLUE);

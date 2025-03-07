@@ -6,9 +6,11 @@ import java.util.ArrayList;
 public class GameManager implements Drawable, Updatable {
     private static GameManager instance = null;
     private ArrayList<GameEntity> gameEntities;
+    private ArrayList<Updatable> updatables;
 
     private GameManager() {
         gameEntities = new ArrayList<>();
+        updatables = new ArrayList<>();
     }
 
     public static GameManager getGameManager() {
@@ -19,6 +21,10 @@ public class GameManager implements Drawable, Updatable {
 
     public void addGameEntity(GameEntity ge) {
         gameEntities.add(ge);
+    }
+
+    public void addUpdatable(Updatable u) {
+        updatables.add(u);
     }
 
     public void startTicking() {
@@ -32,8 +38,12 @@ public class GameManager implements Drawable, Updatable {
             g.setTicking(false);
         }
     }
-    
+
     public void update() {
+        for (Updatable u : updatables) {
+            u.update();
+        }
+        
         for (GameEntity g : gameEntities) {
             g.update();
         }
