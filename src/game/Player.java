@@ -8,11 +8,13 @@ import java.util.Collection;
 import game.weapons.NormalWeapon;
 import game.weapons.Weapon;
 
-public class Player extends GameEntity {
+public class Player extends DamageEntity {
     private Weapon weapon;
 
     public Player() {
+        health = 20;
         weapon = new NormalWeapon(this);
+        weapon.setAim(1, 0);
     }
     public void draw(Graphics2D g2) {
         g2.setColor(Color.BLACK);

@@ -4,7 +4,7 @@ import game.GameEntity;
 import game.Updatable;
 
 public abstract class Weapon implements Updatable {
-    protected int cooldown, x, y;
+    protected int cooldown, x, y, aimX, aimY;
     protected GameEntity owner;
 
     public Weapon(GameEntity owner) {
@@ -19,5 +19,11 @@ public abstract class Weapon implements Updatable {
         y = owner.getY();
         cooldown--;
     }
+
+    public void setAim(int aimX, int aimY) {
+        this.aimX = aimX;
+        this.aimY = aimY;
+    }
+
     public abstract void fire();   
 }

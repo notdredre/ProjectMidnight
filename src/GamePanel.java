@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import game.GameManager;
 import game.InputHandler;
 import game.Player;
+import game.SimpleEnemy;
+import game.Enemy;
 
 public class GamePanel extends JPanel implements Runnable {
     private GameManager gameManager;
@@ -15,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameManager = GameManager.getGameManager();
         frameBuffer = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         Player p = new Player();
+        Enemy e = new SimpleEnemy(500, 50);
         addKeyListener(new InputHandler(p));
         gameManager.startTicking();
         runThread = new Thread(this);

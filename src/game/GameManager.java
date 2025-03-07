@@ -2,15 +2,20 @@ package game;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Vector;
 
 public class GameManager implements Drawable, Updatable {
     private static GameManager instance = null;
-    private ArrayList<GameEntity> gameEntities;
+    private GameEntity player;
+    private Vector<GameEntity> gameEntities;
     private ArrayList<Updatable> updatables;
+    private ArrayList<TargetPlayer> targetPlayers;
 
     private GameManager() {
-        gameEntities = new ArrayList<>();
+        gameEntities = new Vector<>();
         updatables = new ArrayList<>();
+        targetPlayers = new ArrayList<>();
     }
 
     public static GameManager getGameManager() {
@@ -21,10 +26,16 @@ public class GameManager implements Drawable, Updatable {
 
     public void addGameEntity(GameEntity ge) {
         gameEntities.add(ge);
+        if (ge instanceof Player)
+            player = ge;
     }
 
     public void addUpdatable(Updatable u) {
         updatables.add(u);
+    }
+
+    public void addTargetPlayer(TargetPlayer t) {
+        targetPlayers.add(t);
     }
 
     public void startTicking() {
@@ -44,8 +55,13 @@ public class GameManager implements Drawable, Updatable {
             u.update();
         }
         
-        for (GameEntity g : gameEntities) {
-            g.update();
+        Enumeration<GameEntity> ge = gameEntities.elements();
+        while (ge.hasMoreElements()) {
+            ge.nextElement().update();
+        }
+
+        for (TargetPlayer t : targetPlayers) {
+            t.updatePlayerLocation(player.getX(), player.getY());
         }
     }
 

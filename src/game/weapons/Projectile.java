@@ -14,6 +14,7 @@ public class Projectile extends GameEntity {
         this.y = y;
         this.dx = dx;
         this.dy = dy;
+        damage = 5;
         range = 500;
     }
 

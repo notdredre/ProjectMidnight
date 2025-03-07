@@ -18,7 +18,7 @@ public class NormalWeapon extends Weapon {
             return;
 
         cooldown = 25;
-        projectile = new Projectile(x, y, 1, 0);
+        projectile = new Projectile(x, y, aimX, aimY);
     }
 
     public void update() {
