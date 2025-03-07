@@ -16,4 +16,12 @@ public abstract class GameEntity implements Drawable, Updatable {
     public void setTicking(boolean isTicking) {
         this.isTicking = isTicking;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
