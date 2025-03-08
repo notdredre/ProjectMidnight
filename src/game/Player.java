@@ -3,16 +3,19 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 
 import game.weapons.NormalWeapon;
 import game.weapons.Weapon;
 
-public class Player extends GameEntity {
+public class Player extends DamageEntity {
     private Weapon weapon;
 
     public Player() {
+        health = 20;
         weapon = new NormalWeapon(this);
+        weapon.setAim(1, 0);
     }
     public void draw(Graphics2D g2) {
         g2.setColor(Color.BLACK);
@@ -20,13 +23,8 @@ public class Player extends GameEntity {
     }
 
     public void update() {
-        if (!isTicking)
-            return;
-
-        t++;
         x += dx;
-        y += dy;
-        
+        y += dy;   
     }
 
     public void handleKeyInput(Collection<KeyEvent> events) {
@@ -50,5 +48,11 @@ public class Player extends GameEntity {
                     weapon.fire();
             }
         }
+    }
+
+    public Rectangle2D[] getBounds() {
+        Rectangle2D[] bounds = new Rectangle2D[1];
+        bounds[0] = new Rectangle2D.Double(x, y, 10, 10);
+        return bounds;
     }
 }
