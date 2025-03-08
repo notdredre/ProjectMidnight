@@ -34,7 +34,6 @@ public class SimpleEnemy extends Enemy {
         y += dy;
         if (t % 100 <= 30) {
             dy = moveY;
-            System.out.println(dy);
         } else
             dy = 0;
         if (t % 100 == 0) {
