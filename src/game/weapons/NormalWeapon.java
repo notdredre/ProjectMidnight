@@ -23,8 +23,6 @@ public class NormalWeapon extends Weapon {
     public void fire() {
         if (cooldown > 0)
             return;
-        if (owner instanceof Player)
-            System.out.println(current);
         cooldown = 25;
         while (pool[current].isActive) {
             current = (current + 1) % 30;
