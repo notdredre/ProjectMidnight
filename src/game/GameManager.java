@@ -9,13 +9,17 @@ public class GameManager implements Drawable, Updatable {
     private static GameManager instance = null;
     private GameEntity player;
     private Vector<GameEntity> gameEntities;
+    private ArrayList<DamageEntity> damageEntities;
     private ArrayList<Updatable> updatables;
     private ArrayList<TargetPlayer> targetPlayers;
+    private Vector<CollisionChecker> collisionCheckers;
 
     private GameManager() {
         gameEntities = new Vector<>();
         updatables = new ArrayList<>();
         targetPlayers = new ArrayList<>();
+        damageEntities = new ArrayList<>();
+        collisionCheckers = new Vector<>();
     }
 
     public static GameManager getGameManager() {
@@ -28,6 +32,10 @@ public class GameManager implements Drawable, Updatable {
         gameEntities.add(ge);
         if (ge instanceof Player)
             player = ge;
+        if (ge instanceof DamageEntity)
+            damageEntities.add((DamageEntity) ge);
+        if (ge instanceof CollisionChecker)
+            collisionCheckers.add((CollisionChecker) ge);
     }
 
     public void addUpdatable(Updatable u) {
@@ -57,7 +65,12 @@ public class GameManager implements Drawable, Updatable {
         
         Enumeration<GameEntity> ge = gameEntities.elements();
         while (ge.hasMoreElements()) {
-            ge.nextElement().update();
+            ge.nextElement().tick();
+        }
+
+        Enumeration<CollisionChecker> cc = collisionCheckers.elements();
+        while (cc.hasMoreElements()) {
+            cc.nextElement().checkCollisions(damageEntities);
         }
 
         for (TargetPlayer t : targetPlayers) {

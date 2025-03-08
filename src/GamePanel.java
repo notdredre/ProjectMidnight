@@ -19,7 +19,6 @@ public class GamePanel extends JPanel implements Runnable {
         Player p = new Player();
         Enemy e = new SimpleEnemy(500, 50);
         addKeyListener(new InputHandler(p));
-        gameManager.startTicking();
         runThread = new Thread(this);
     }
 
