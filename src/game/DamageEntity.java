@@ -14,7 +14,7 @@ public abstract class DamageEntity extends GameEntity {
     public void tick() {
         if (!isTicking)
             return;
-        if (health < 0)
+        if (health <= 0)
             return;
         t++;
         update();

@@ -26,17 +26,21 @@ public class SimpleEnemy extends Enemy {
     }
 
     public void update() {
+        int distX = playerX - x;
+        int distY = playerY - y;
+        double hyp = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
+        int moveY = (int) Math.signum(distY / hyp);
+        int moveX = (int) Math.signum(distX / hyp);
+        y += dy;
+        if (t % 100 <= 30) {
+            dy = moveY;
+            System.out.println(dy);
+        } else
+            dy = 0;
         if (t % 100 == 0) {
-            int distX = playerX - x;
-            int distY = playerY - y;
-            double hyp = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-            int sinT = (int) Math.round(distY / hyp);
-            int cosT = (int) Math.round(distX / hyp);
-            System.out.println(sinT + " " + cosT);
-            weapon.setAim(cosT, sinT);
+            weapon.setAim(-1, 0);
             weapon.fire();
         }
-            
     }
 
     public Rectangle2D[] getBounds() {

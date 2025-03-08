@@ -16,7 +16,7 @@ public abstract class GameEntity implements Drawable, Updatable {
         t = 0;
         isTicking = true;
         this.x = x;
-        this.y = y; 
+        this.y = y;
         dx = dy = 0;
         gameManager.addGameEntity(this);
     }
