@@ -12,34 +12,53 @@ import game.GameEntity;
 public class Projectile extends GameEntity implements CollisionChecker {
     private int damage, range;
     private GameEntity source;
+    public boolean isActive;
 
-    public Projectile(int x, int y, int dx, int dy, GameEntity source) {
+    public Projectile(GameEntity source) {
         super();
-        this.x = x;
-        this.y = y;
-        this.dx = dx;
-        this.dy = dy;
         this.source = source;
         damage = 5;
         range = 500;
+        isActive = false;
     }
 
     public void draw(Graphics2D g2) {
-        if (range <= 0)
-            return;
-        g2.setColor(Color.WHITE);
-        g2.drawOval(x, y, 5, 5);
+        if (isActive) {
+            g2.setColor(Color.WHITE);
+            g2.drawOval(x, y, 5, 5);
+        }
     }
 
     public void update() {
         if (range <= 0)
-            return;
-        x += dx;
-        y += dy;
-        range--;
+            reset();
+        if (isActive) {
+            x += dx;
+            y += dy;
+            range--;    
+        }
+    }
+
+    public void fire(int aimX, int aimY) {
+        dx = aimX;
+        dy = aimY;
+        x = source.getX();
+        y = source.getY();
+        isActive = true;
+    }
+
+    public void reset() {
+        range = 500;
+        isActive = false;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public void checkCollisions(Collection<DamageEntity> damageEntities) {
+        if (!isActive)
+            return;
         for (DamageEntity d : damageEntities) {
             if (!d.equals(source)) {
                 for (Rectangle2D r : d.getBounds()) {
@@ -53,6 +72,8 @@ public class Projectile extends GameEntity implements CollisionChecker {
     }
 
     public Rectangle2D[] getBounds() {
+        if (!isActive)
+            return new Rectangle2D[0];
         Rectangle2D[] bounds = new Rectangle2D[1];
         bounds[0] = new Rectangle2D.Double(x, y, 5, 5);
         return bounds;

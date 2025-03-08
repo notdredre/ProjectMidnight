@@ -63,14 +63,12 @@ public class GameManager implements Drawable, Updatable {
             u.update();
         }
         
-        Enumeration<GameEntity> ge = gameEntities.elements();
-        while (ge.hasMoreElements()) {
-            ge.nextElement().tick();
+        for (GameEntity ge : gameEntities) {
+            ge.tick();
         }
 
-        Enumeration<CollisionChecker> cc = collisionCheckers.elements();
-        while (cc.hasMoreElements()) {
-            cc.nextElement().checkCollisions(damageEntities);
+        for (CollisionChecker cc : collisionCheckers) {
+            cc.checkCollisions(damageEntities);
         }
 
         for (TargetPlayer t : targetPlayers) {
