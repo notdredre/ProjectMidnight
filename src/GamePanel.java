@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
             while (true) {
                 requestFocus();
                 diff = System.currentTimeMillis() - now;
-                if (diff >= 15) {
+                if (diff >= 10) {
                     now = System.currentTimeMillis();
                     gameManager.update();
                     Graphics2D f2 = (Graphics2D) frameBuffer.getGraphics();
