@@ -15,6 +15,26 @@ public abstract class Enemy extends DamageEntity implements TargetPlayer {
         gameManager.addTargetPlayer(this);
     }
 
+    public void moveLeft() {
+        dx = -1;
+    }
+
+    public void moveRight() {
+        dx = 1;
+    }
+
+    public void moveUp() {
+        dy = -1;
+    }
+
+    public void moveDown() {
+        dy = 1;
+    }
+
+    public void stay() {
+        dy = dx = 0;
+    }
+    
     public void updatePlayerLocation(int x, int y) {
         playerX = x;
         playerY = y;

@@ -4,9 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
+import game.actions.MoveSet;
+import game.actions.SimpleEnemyMoves;
 import game.weapons.NormalWeapon;
 
 public class SimpleEnemy extends Enemy {
+    private MoveSet moves;
+
     public SimpleEnemy() {
         this(0, 0);
     }
@@ -16,6 +20,7 @@ public class SimpleEnemy extends Enemy {
         health = 10;
         weapon = new NormalWeapon(this);
         weapon.setAim(-1, 0);
+        moves = new SimpleEnemyMoves(this);
     }
 
     public void draw(Graphics2D g2) {
@@ -26,7 +31,9 @@ public class SimpleEnemy extends Enemy {
     }
 
     public void update() {
-        int distX = playerX - x;
+        x += dx;
+        y += dy;
+        /* int distX = playerX - x;
         int distY = playerY - y;
         double hyp = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
         int moveY = (int) Math.signum(distY / hyp);
@@ -39,7 +46,8 @@ public class SimpleEnemy extends Enemy {
         if (t % 100 == 0) {
             weapon.setAim(-1, 0);
             weapon.fire();
-        }
+        } */
+       moves.act(t);
     }
 
     public Rectangle2D[] getBounds() {
