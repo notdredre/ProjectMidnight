@@ -33,23 +33,13 @@ public class SimpleEnemy extends Enemy {
     public void update() {
         x += dx;
         y += dy;
-        /* int distX = playerX - x;
-        int distY = playerY - y;
-        double hyp = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-        int moveY = (int) Math.signum(distY / hyp);
-        int moveX = (int) Math.signum(distX / hyp);
-        y += dy;
-        if (t % 100 <= 30) {
-            dy = moveY;
-        } else
-            dy = 0;
-        if (t % 100 == 0) {
-            weapon.setAim(-1, 0);
-            weapon.fire();
-        } */
        moves.act(t);
     }
 
+    public void attack() {
+        weapon.fire();
+    }
+    
     public Rectangle2D[] getBounds() {
         if (health <= 0)
             return new Rectangle2D[0];

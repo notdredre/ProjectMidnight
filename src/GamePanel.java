@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameManager = GameManager.getGameManager();
         frameBuffer = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         Player p = new Player();
-        Enemy e = new SimpleEnemy(500, 50);
+        Enemy e = new SimpleEnemy(-100, 50);
         addKeyListener(new InputHandler(p));
         runThread = new Thread(this);
         now = System.currentTimeMillis();

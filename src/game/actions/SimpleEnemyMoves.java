@@ -1,20 +1,23 @@
 package game.actions;
 
 import game.GameEntity;
+import game.SimpleEnemy;
 
 public class SimpleEnemyMoves extends MoveSet {
-    private final int NUM_STEPS = 1000;
+    private SimpleEnemy enemy;
     public SimpleEnemyMoves(GameEntity owner) {
         super(owner);
+        this.enemy = (SimpleEnemy) owner;
     }
 
     public void act(int t) {
-        int step = t % NUM_STEPS;
-        if (step < 300)
-            owner.moveLeft();
-        else if (step > 300 && step < 500)
-            owner.moveDown();
+        if (t < 500)
+            enemy.moveRight();
+        else if (t < 1000) {
+            enemy.stay();
+            enemy.attack();
+        }
         else
-            owner.stay();
+            enemy.moveUp();
     }
 }
