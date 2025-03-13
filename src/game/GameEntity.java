@@ -39,5 +39,24 @@ public abstract class GameEntity implements Drawable, Updatable {
         return y;
     }
 
+    public void moveLeft() {
+        dx = -1;
+    }
+
+    public void moveRight() {
+        dx = 1;
+    }
+
+    public void moveUp() {
+        dy = -1;
+    }
+
+    public void moveDown() {
+        dy = 1;
+    }
+
+    public void stay() {
+        dy = dx = 0;
+    }
     public abstract Rectangle2D[] getBounds();
 }
