@@ -6,6 +6,7 @@ import game.GameManager;
 import game.InputHandler;
 import game.Player;
 import game.SimpleEnemy;
+import game.BossEnemy;
 import game.Enemy;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -19,6 +20,7 @@ public class GamePanel extends JPanel implements Runnable {
         frameBuffer = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         Player p = new Player();
         Enemy e = new SimpleEnemy(-100, 50);
+        BossEnemy b = new BossEnemy(800, 100);
         addKeyListener(new InputHandler(p));
         runThread = new Thread(this);
         now = System.currentTimeMillis();
