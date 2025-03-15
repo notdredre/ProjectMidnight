@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 import game.actions.BossMovesFar;
 import game.actions.MoveSet;
 import game.weapons.NormalWeapon;
+import game.weapons.Weapon;
 
 public class BossEnemy extends Enemy {
     private MoveSet moves;
@@ -18,8 +19,17 @@ public class BossEnemy extends Enemy {
     public BossEnemy(int x, int y) {
         super(x, y);
         health = 30;
-        weapon = new NormalWeapon(this);
-        weapon.setAim(-1, 0);
+        weapons = new Weapon[8];
+        for (int i = 0; i < 8; i++)
+            weapons[i] = new NormalWeapon(this);
+        weapons[0].setAim(-1, 0);
+        weapons[1].setAim(-1, 1);
+        weapons[2].setAim(0, 1);
+        weapons[3].setAim(1, 1);
+        weapons[4].setAim(1, 0);
+        weapons[5].setAim(1, -1);
+        weapons[6].setAim(0, -1);
+        weapons[7].setAim(-1, -1);
         moves = new BossMovesFar(this);
     }
 
@@ -41,7 +51,12 @@ public class BossEnemy extends Enemy {
     }
 
     public void basicAttack() {
-        weapon.fire();
+        weapons[0].fire();
+    }
+
+    public void specialAttack() {
+        for (Weapon w : weapons)
+            w.fire();
     }
 
     public int getPlayerX() {

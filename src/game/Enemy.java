@@ -3,7 +3,7 @@ package game;
 import game.weapons.Weapon;
 
 public abstract class Enemy extends DamageEntity implements TargetPlayer {
-    protected Weapon weapon;
+    protected Weapon[] weapons;
     protected int playerX, playerY;
 
     public Enemy() {
