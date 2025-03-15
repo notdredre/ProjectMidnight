@@ -12,11 +12,17 @@ import game.weapons.Weapon;
 
 public class Player extends DamageEntity {
     private Weapon weapon;
-
+    private NormalWeapon normal;
+    private SpecialWeapon special;
+    private int charge;
+    private final int CHARGE_LIMIT = 5000;
     public Player() {
         health = 20;
-        weapon = new SpecialWeapon(this);
+        normal = new NormalWeapon(this);
+        special = new SpecialWeapon(this);
+        weapon = normal;
         weapon.setAim(1, 0);
+        charge = 0;
     }
     public void draw(Graphics2D g2) {
         g2.setColor(Color.BLACK);
@@ -25,11 +31,18 @@ public class Player extends DamageEntity {
 
     public void update() {
         x += dx;
-        y += dy;   
+        y += dy;
+        if (weapon.equals(normal) && charge < CHARGE_LIMIT)
+            charge++;
+        if (charge <= 0 && weapon.equals(special))
+            weapon = normal;
+        System.out.println(charge);
     }
 
     public void handleKeyInput(Collection<KeyEvent> events) {
         dx = dy = 0;
+        if (health <= 0)
+            return;
 
         for (KeyEvent e : events) {
             switch (e.getKeyCode()) {
@@ -46,7 +59,13 @@ public class Player extends DamageEntity {
                     dx = 1;
                     break;
                 case KeyEvent.VK_Z:
+                    if (charge >= 0 && weapon.equals(special))
+                        charge--;
                     weapon.fire();
+                    break;
+                case KeyEvent.VK_X:
+                    if (charge >= CHARGE_LIMIT)
+                        weapon = special;
             }
         }
     }
