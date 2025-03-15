@@ -19,7 +19,6 @@ public class BossMovesClose extends MoveSet {
                 t0 = -1;
                 enemy.move(100 - enemy.getX(), 100 - enemy.getY());
             } else {
-                System.out.println("HERE");
                 t0 = t;
                 enemy.stay();
             }

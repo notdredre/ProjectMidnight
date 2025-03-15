@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 
 import game.GameEntity;
 
-public class SplittingProjectile extends Projectile {
+public class SplittingProjectile extends EnemyProjectile {
     private Projectile[] fragments;
     private final int NUM_FRAGS = 3;
 
