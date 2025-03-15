@@ -9,25 +9,17 @@ import game.CollisionChecker;
 import game.DamageEntity;
 import game.GameEntity;
 
-public class Projectile extends GameEntity implements CollisionChecker {
-    private int damage, range;
-    private GameEntity source;
-    public boolean isActive;
+public abstract class Projectile extends GameEntity implements CollisionChecker {
+    protected int damage, range;
+    protected GameEntity source;
+    protected boolean isActive;
 
     public Projectile(GameEntity source) {
         super();
         this.source = source;
-        damage = 5;
-        range = 500;
         isActive = false;
     }
 
-    public void draw(Graphics2D g2) {
-        if (isActive) {
-            g2.setColor(Color.WHITE);
-            g2.drawOval(x, y, 5, 5);
-        }
-    }
 
     public void update() {
         if (range <= 0)
@@ -48,7 +40,6 @@ public class Projectile extends GameEntity implements CollisionChecker {
     }
 
     public void reset() {
-        range = 500;
         isActive = false;
     }
 
