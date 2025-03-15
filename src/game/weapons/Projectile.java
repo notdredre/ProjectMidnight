@@ -49,12 +49,17 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
     public void checkCollisions(Collection<DamageEntity> damageEntities) {
         if (!isActive)
             return;
+        if (this instanceof Lazer)
+            System.out.println("HERE");
         for (DamageEntity d : damageEntities) {
             if (!d.equals(source)) {
                 for (Rectangle2D r : d.getBounds()) {
                     for (Rectangle2D r2 : getBounds()) {
-                        if (r.contains(r2))
+                        if (r.intersects(r2)) {
+                            System.out.println("HIT");
                             d.damage(damage);
+                        }
+                            
                     }
                 }
             }

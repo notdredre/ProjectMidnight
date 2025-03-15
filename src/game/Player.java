@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 
 import game.weapons.NormalWeapon;
+import game.weapons.SpecialWeapon;
 import game.weapons.Weapon;
 
 public class Player extends DamageEntity {
@@ -14,7 +15,7 @@ public class Player extends DamageEntity {
 
     public Player() {
         health = 20;
-        weapon = new NormalWeapon(this);
+        weapon = new SpecialWeapon(this);
         weapon.setAim(1, 0);
     }
     public void draw(Graphics2D g2) {
