@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
+import game.actions.BossMovesClose;
 import game.actions.BossMovesFar;
 import game.actions.MoveSet;
 import game.weapons.NormalWeapon;
@@ -30,7 +31,7 @@ public class BossEnemy extends Enemy {
         weapons[5].setAim(1, -1);
         weapons[6].setAim(0, -1);
         weapons[7].setAim(-1, -1);
-        moves = new BossMovesFar(this);
+        moves = new BossMovesClose(this);
     }
 
     public void changeMoveSet(MoveSet moves) {
