@@ -27,7 +27,6 @@ public class NormalWeapon extends Weapon {
         while (pool[current].isActive()) {
             current = (current + 1) % AMMO_AMT;
         }
-        if (current == AMMO_AMT - 1)
         pool[current].fire(aimX, aimY);
     }
 
