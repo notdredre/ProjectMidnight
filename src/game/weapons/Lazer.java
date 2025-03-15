@@ -10,7 +10,7 @@ public class Lazer extends Projectile {
     public Lazer(GameEntity source) {
         super(source);
         damage = 15;
-        range = 1000;
+        range = 50;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Lazer extends Projectile {
 
     public void reset() {
         super.reset();
-        range = 1000;
+        range = 50;
     }
 
     public Rectangle2D[] getBounds() {
