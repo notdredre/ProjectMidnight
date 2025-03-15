@@ -53,8 +53,10 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
             if (!d.equals(source)) {
                 for (Rectangle2D r : d.getBounds()) {
                     for (Rectangle2D r2 : getBounds()) {
-                        if (r.contains(r2))
+                        if (r.intersects(r2)) {
                             d.damage(damage);
+                        }
+                            
                     }
                 }
             }
