@@ -5,9 +5,7 @@ import javax.swing.JPanel;
 import game.GameManager;
 import game.InputHandler;
 import game.Player;
-import game.SimpleEnemy;
-import game.BossEnemy;
-import game.Enemy;
+import game.Stage;
 
 public class GamePanel extends JPanel implements Runnable {
     private GameManager gameManager;
@@ -19,9 +17,10 @@ public class GamePanel extends JPanel implements Runnable {
         gameManager = GameManager.getGameManager();
         frameBuffer = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         Player p = new Player();
-        Enemy e = new SimpleEnemy(-100, 50);
-        BossEnemy b = new BossEnemy(800, 100);
         addKeyListener(new InputHandler(p));
+        Stage stage = new Stage();
+        stage.initStage();
+        p.setTicking(true);
         runThread = new Thread(this);
         now = System.currentTimeMillis();
     }

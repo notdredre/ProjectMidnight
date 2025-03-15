@@ -13,6 +13,7 @@ public abstract class Enemy extends DamageEntity implements TargetPlayer {
     public Enemy(int x, int y) {
         super(x, y);
         gameManager.addTargetPlayer(this);
+        isTicking = false;
     }
 
     public void moveLeft() {
