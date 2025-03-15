@@ -55,6 +55,11 @@ public abstract class GameEntity implements Drawable, Updatable {
         dy = 1;
     }
 
+    public void move(int x, int y) {
+        dx = Math.clamp(x, -1, 1);
+        dy = Math.clamp(y, -1, 1);
+    }
+
     public void stay() {
         dy = dx = 0;
     }

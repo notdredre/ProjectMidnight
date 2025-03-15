@@ -2,7 +2,6 @@ package game;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Vector;
 
 public class GameManager implements Drawable, Updatable {
