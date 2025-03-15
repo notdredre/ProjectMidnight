@@ -28,7 +28,6 @@ public class Lazer extends Projectile {
     public void fire(int aimX, int aimY) {
         if (!fireSound.isPlaying()) {
             fireSound.play();
-            System.out.println("HERE");
         }
             
         super.fire(aimX, aimY);
