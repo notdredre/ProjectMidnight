@@ -13,9 +13,9 @@ public class SplittingProjectile extends EnemyProjectile {
         super(source);
         damage = 20;
         range = 100;
-        fragments = new NormalProjectile[NUM_FRAGS];
+        fragments = new NormalEnemyProjectile[NUM_FRAGS];
         for (int i = 0; i < NUM_FRAGS; i++)
-            fragments[i] = new NormalProjectile(this);
+            fragments[i] = new NormalEnemyProjectile(this);
     }
 
     public void draw(Graphics2D g2) {

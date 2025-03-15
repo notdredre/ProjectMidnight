@@ -36,7 +36,6 @@ public class Player extends DamageEntity {
             charge++;
         if (charge <= 0 && weapon.equals(special))
             weapon = normal;
-        System.out.println(charge);
     }
 
     public void handleKeyInput(Collection<KeyEvent> events) {
