@@ -3,11 +3,10 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-
-import game.actions.BossMovesClose;
 import game.actions.BossMovesFar;
 import game.actions.MoveSet;
-import game.weapons.NormalWeapon;
+import game.weapons.EnemyGrenadeWeapon;
+import game.weapons.NormalEnemyWeapon;
 import game.weapons.Weapon;
 
 public class BossEnemy extends Enemy {
@@ -21,8 +20,9 @@ public class BossEnemy extends Enemy {
         super(x, y);
         health = 30;
         weapons = new Weapon[8];
-        for (int i = 0; i < 8; i++)
-            weapons[i] = new NormalWeapon(this);
+        weapons[0] = new EnemyGrenadeWeapon(this);
+        for (int i = 1; i < 8; i++)
+            weapons[i] = new NormalEnemyWeapon(this);
         weapons[0].setAim(-1, 0);
         weapons[1].setAim(-1, 1);
         weapons[2].setAim(0, 1);
@@ -31,7 +31,7 @@ public class BossEnemy extends Enemy {
         weapons[5].setAim(1, -1);
         weapons[6].setAim(0, -1);
         weapons[7].setAim(-1, -1);
-        moves = new BossMovesClose(this);
+        moves = new BossMovesFar(this);
     }
 
     public void changeMoveSet(MoveSet moves) {

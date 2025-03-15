@@ -24,6 +24,7 @@ public abstract class GameEntity implements Drawable, Updatable {
     public void tick() {
         if (!isTicking)
             return;
+        t++;
         update();
     }
 

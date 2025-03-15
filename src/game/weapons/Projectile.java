@@ -1,7 +1,5 @@
 package game.weapons;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 
@@ -41,6 +39,7 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
 
     public void reset() {
         isActive = false;
+        t = 0;
     }
 
     public boolean isActive() {

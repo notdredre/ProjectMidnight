@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 import game.actions.MoveSet;
 import game.actions.SimpleEnemyMoves;
-import game.weapons.NormalWeapon;
+import game.weapons.NormalEnemyWeapon;
 import game.weapons.Weapon;
 
 public class SimpleEnemy extends Enemy {
@@ -20,7 +20,7 @@ public class SimpleEnemy extends Enemy {
         super(x, y);
         health = 10;
         weapons = new Weapon[1];
-        weapons[0] = new NormalWeapon(this);
+        weapons[0] = new NormalEnemyWeapon(this);
         weapons[0].setAim(-1, 0);
         moves = new SimpleEnemyMoves(this);
     }
