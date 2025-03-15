@@ -5,12 +5,16 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
 import game.GameEntity;
+import game.sound.Sound;
 
 public class Lazer extends Projectile {
+    private Sound fireSound;
+
     public Lazer(GameEntity source) {
         super(source);
         damage = 15;
         range = 50;
+        fireSound = new Sound("src/game/res/sfx/Lazer.wav", 0.7f);
     }
 
     @Override
@@ -19,6 +23,20 @@ public class Lazer extends Projectile {
             g2.setColor(Color.PINK);
             g2.fillRect(x, y, 1000, 10);
         }
+    }
+
+    public void fire(int aimX, int aimY) {
+        if (!fireSound.isPlaying()) {
+            fireSound.play();
+        }
+            
+        super.fire(aimX, aimY);
+    }
+
+    public void update() {
+        if (!isActive)
+            fireSound.stop();
+        super.update();
     }
 
     public void reset() {
