@@ -33,16 +33,24 @@ public class Sound {
 
     public void play() {
         if (clip != null) {
-			clip.setFramePosition(0);
-			if (loop)
-				clip.loop(Clip.LOOP_CONTINUOUSLY);
-			else
-				clip.start();
-		}
+            clip.setFramePosition(0);
+            if (loop)
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+            else
+                clip.start();
+        }
+    }
+
+    public void stop() {
+        if (clip != null) {
+            clip.setFramePosition(0);
+            clip.stop();
+            clip.drain();
+        }
     }
 
     public boolean isPlaying() {
-        return clip.getLongFramePosition() != 0;
+        return clip.isActive();
     }
 
     public void setVolume(float volume) {
