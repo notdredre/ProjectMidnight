@@ -52,7 +52,14 @@ public class BossEnemy extends Enemy {
     }
 
     public void basicAttack() {
+        float diffX = playerX - x;
+        float diffY = playerY - y;
+        float hyp = (float) Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+        int DX = Math.round(diffX / hyp);
+        int DY = Math.round(diffY / hyp);
+        weapons[0].setAim(DX, DY);
         weapons[0].fire();
+        weapons[0].setAim(-1, 0);
     }
 
     public void specialAttack() {
