@@ -15,7 +15,7 @@ public class NormalWeapon extends Weapon {
         gameManager.addUpdatable(this);
         pool = new Projectile[AMMO_AMT];
         for (int i = 0; i < AMMO_AMT; i++) {
-            pool[i] = new SplittingProjectile(owner);
+            pool[i] = new NormalProjectile(owner);
         }
         current = 0;
     }
@@ -27,7 +27,6 @@ public class NormalWeapon extends Weapon {
         while (pool[current].isActive()) {
             current = (current + 1) % AMMO_AMT;
         }
-        if (current == AMMO_AMT - 1)
         pool[current].fire(aimX, aimY);
     }
 
