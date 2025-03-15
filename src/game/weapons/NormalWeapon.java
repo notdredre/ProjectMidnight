@@ -2,9 +2,9 @@ package game.weapons;
 
 import game.GameEntity;
 import game.GameManager;
-import game.Player;
 
 public class NormalWeapon extends Weapon {
+    private final int AMMO_AMT = 50;
     private Projectile[] pool;
     private GameManager gameManager;
     private int current;
@@ -13,9 +13,9 @@ public class NormalWeapon extends Weapon {
         super(owner);
         gameManager = GameManager.getGameManager();
         gameManager.addUpdatable(this);
-        pool = new Projectile[30];
-        for (int i = 0; i < 30; i++) {
-            pool[i] = new Projectile(owner);
+        pool = new Projectile[AMMO_AMT];
+        for (int i = 0; i < AMMO_AMT; i++) {
+            pool[i] = new NormalProjectile(owner);
         }
         current = 0;
     }
@@ -24,9 +24,11 @@ public class NormalWeapon extends Weapon {
         if (cooldown > 0)
             return;
         cooldown = 25;
-        while (pool[current].isActive) {
-            current = (current + 1) % 30;
+        while (pool[current].isActive()) {
+            current = (current + 1) % AMMO_AMT;
         }
+        if (current == AMMO_AMT - 1)
+            System.out.println("HERE");
         pool[current].fire(aimX, aimY);
     }
 
