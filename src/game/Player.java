@@ -16,7 +16,7 @@ public class Player extends DamageEntity {
     private NormalWeapon normal;
     private SpecialWeapon special;
     private int charge;
-    private Sound chargeSound;
+    private Sound chargeSound, lowHealthSound;
     private boolean discharged;
     private final int CHARGE_LIMIT = 500;
     public Player() {
@@ -28,6 +28,7 @@ public class Player extends DamageEntity {
         charge = 0;
         discharged = false;
         chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.7f);
+        lowHealthSound = new Sound("src/game/res/sfx/Health Low.wav", true, 0.7f);
     }
 
     public void draw(Graphics2D g2) {
@@ -48,6 +49,8 @@ public class Player extends DamageEntity {
             discharged = true;
             chargeSound.play();
         }
+        if (health <= 5 && !lowHealthSound.isPlaying())
+            lowHealthSound.play();
     }
 
     public void handleKeyInput(Collection<KeyEvent> events) {

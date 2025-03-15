@@ -26,7 +26,7 @@ public class Sound {
     public Sound(String path, float volume) {
         this(path, false, volume);
     }
-    
+
     public Sound(String path) {
         this(path, false, 1);
     }
@@ -39,6 +39,10 @@ public class Sound {
 			else
 				clip.start();
 		}
+    }
+
+    public boolean isPlaying() {
+        return clip.getLongFramePosition() != 0;
     }
 
     public void setVolume(float volume) {
