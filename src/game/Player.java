@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 
+import game.anim.Animation;
 import game.sound.Sound;
 import game.weapons.NormalWeapon;
 import game.weapons.SpecialWeapon;
@@ -19,6 +20,8 @@ public class Player extends DamageEntity {
     private Sound chargeSound, lowHealthSound;
     private boolean discharged;
     private final int CHARGE_LIMIT = 500;
+    private Animation anim;
+
     public Player() {
         health = 20;
         normal = new NormalWeapon(this);
@@ -29,11 +32,13 @@ public class Player extends DamageEntity {
         discharged = false;
         chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.7f);
         lowHealthSound = new Sound("src/game/res/sfx/Health Low.wav", true, 0.7f);
+        anim = new Animation(this, "src/game/res/sprites/player test.gif", 5, 5);
+        anim.rowAnim("Normal", 0);
+        anim.setState("Normal");
     }
 
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.BLACK);
-        g2.fillRect(x, y, 10, 10);
+        anim.draw(g2);
     }
 
     public void update() {
