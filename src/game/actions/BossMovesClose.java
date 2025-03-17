@@ -28,7 +28,7 @@ public class BossMovesClose extends MoveSet {
             enemy.moveDown();
             enemy.specialAttack();
         }
-        if (enemy.getX() >= 800 || enemy.getY() >= 800)
+        if (enemy.getX() >= 400 || enemy.getY() >= 400)
             enemy.changeMoveSet(new BossMovesFar(owner));  
     }
     

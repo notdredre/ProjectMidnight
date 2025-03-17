@@ -11,13 +11,15 @@ public class SimpleEnemyMoves extends MoveSet {
     }
 
     public void act(int t) {
-        if (t < 500)
+        if (enemy.getX() < 350)
             enemy.moveRight();
-        else if (t < 1000) {
-            enemy.stay();
-            enemy.attack();
-        }
-        else
-            enemy.moveUp();
+        else {
+            if (t < 1000) {
+                enemy.stay();
+                enemy.attack();
+            }
+            else
+                enemy.moveUp();
+        } 
     }
 }

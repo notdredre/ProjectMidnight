@@ -36,7 +36,11 @@ public class BossMovesFar extends MoveSet implements TargetPlayer {
         if (step == 999) {
             enemy.stay();
         }
-        if (Math.abs(playerX - enemy.getX()) < 100 && Math.abs(playerY - enemy.getY()) < 100) {
+        if (enemy.getX() >= 400)
+            enemy.moveLeft();
+        if (enemy.getY() >= 400)
+            enemy.moveUp();
+        if (Math.abs(playerX - enemy.getX()) < 100 && Math.abs(playerY - enemy.getY()) < 100 || enemy.getX() <= 100 || enemy.getY() <= 100) {
             enemy.changeMoveSet(new BossMovesClose(owner));
         } 
     }
