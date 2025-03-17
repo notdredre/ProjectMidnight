@@ -5,11 +5,16 @@ import game.weapons.Weapon;
 public abstract class Enemy extends DamageEntity implements TargetPlayer {
     protected Weapon[] weapons;
     protected int playerX, playerY;
+    protected int value;
 
     public Enemy() {
         this(0, 0);
     }
 
+    public void updateScore() {
+        gameManager.updateScore(value);
+    }
+    
     public Enemy(int x, int y) {
         super(x, y);
         gameManager.addTargetPlayer(this);

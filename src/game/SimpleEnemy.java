@@ -26,6 +26,7 @@ public class SimpleEnemy extends Enemy {
         weapons[0].setAim(-1, 0);
         moves = new SimpleEnemyMoves(this);
         enemySprite = new Sprite(this, "src/game/res/sprites/Enemy.gif");
+        value = 100;
     }
 
     public void draw(Graphics2D g2) {
