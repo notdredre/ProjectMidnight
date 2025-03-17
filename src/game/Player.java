@@ -7,6 +7,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 
 import game.graphics.Animation;
+import game.graphics.imagefx.FlashFX;
+import game.graphics.imagefx.ImageFX;
 import game.sound.Sound;
 import game.weapons.NormalWeapon;
 import game.weapons.SpecialWeapon;
@@ -73,6 +75,7 @@ public class Player extends DamageEntity {
     }
 
     public void damage(int damage) {
+        anim.setFX(new FlashFX());
         super.damage(damage);
         if (health <= 5) {
             anim.setModifier("Low");

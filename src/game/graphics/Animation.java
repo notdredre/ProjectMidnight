@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 
 import game.Drawable;
 import game.GameEntity;
+import game.graphics.imagefx.ImageFX;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -18,6 +19,7 @@ public class Animation implements Drawable {
     private long now, diff, target;
     private GameEntity owner;
     private String path, currentState, modifier;
+    private ImageFX post;
     private boolean loop;
 
     public Animation(GameEntity owner, String path, int numRows, int numCols, long target, boolean loop) {
@@ -31,6 +33,7 @@ public class Animation implements Drawable {
         this.numRows = numRows;
         modifier = "";
         this.loop = loop;
+        post = null;
     }
 
     public Animation(GameEntity owner, String path, int numRows, int numCols, long target) {
@@ -47,6 +50,10 @@ public class Animation implements Drawable {
 
     public void setModifier(String modifier) {
         this.modifier = modifier;
+    }
+
+    public void setFX(ImageFX post) {
+        this.post = post;
     }
 
     public void rowAnim(String stateName, int row) {
@@ -68,6 +75,10 @@ public class Animation implements Drawable {
         animMap.put(stateName, string);
     }
 
+    public BufferedImage getCurrentFrame() {
+        return animMap.get(currentState).get(step);
+    }
+
     public void draw(Graphics2D g2) {
         ArrayList<BufferedImage> string = animMap.get(currentState);
         diff = System.currentTimeMillis() - now;
@@ -82,6 +93,9 @@ public class Animation implements Drawable {
         y = owner.getY();
         if (step >= string.size())
             return;
-        g2.drawImage(string.get(step), x, y, null);
+        BufferedImage toDraw = string.get(step);
+        if (post != null)
+            toDraw = post.process(toDraw);
+        g2.drawImage(toDraw, x, y, null);
     }
 }
