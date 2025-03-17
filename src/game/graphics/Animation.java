@@ -1,4 +1,4 @@
-package game.anim;
+package game.graphics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,9 +17,10 @@ public class Animation implements Drawable {
     private int step, x, y, numCols, numRows;
     private long now, diff, target;
     private GameEntity owner;
-    private String path, currentState;
+    private String path, currentState, modifier;
+    private boolean loop;
 
-    public Animation(GameEntity owner, String path, int numRows, int numCols, long target) {
+    public Animation(GameEntity owner, String path, int numRows, int numCols, long target, boolean loop) {
         animMap = new HashMap<>();
         this.target = target;
         step = -1;
@@ -28,14 +29,24 @@ public class Animation implements Drawable {
         this.path = path;
         this.numCols = numCols;
         this.numRows = numRows;
+        modifier = "";
+        this.loop = loop;
+    }
+
+    public Animation(GameEntity owner, String path, int numRows, int numCols, long target) {
+        this(owner, path, numRows, numCols, target, false);
     }
 
     public Animation(GameEntity owner, String path, int numRows, int numCols) {
-        this(owner, path, numRows, numCols, 33);
+        this(owner, path, numRows, numCols, 33, false);
     }
 
     public void setState(String state) {
-        currentState = state;
+        currentState = state + modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
     }
 
     public void rowAnim(String stateName, int row) {
@@ -61,11 +72,16 @@ public class Animation implements Drawable {
         ArrayList<BufferedImage> string = animMap.get(currentState);
         diff = System.currentTimeMillis() - now;
         if (diff >= target) {
-            step = (step + 1) % string.size();
+            if (loop)
+                step = (step + 1) % string.size();
+            else
+                step++;
             now = System.currentTimeMillis();
         }
         x = owner.getX();
         y = owner.getY();
-        g2.drawImage(string.get(step), x, y, null);        
+        if (step >= string.size())
+            return;
+        g2.drawImage(string.get(step), x, y, null);
     }
 }
