@@ -40,13 +40,15 @@ public class SimpleEnemy extends Enemy {
     public void update() {
         x += dx;
         y += dy;
-       moves.act(t);
+        moves.act(t);
+        if (health <= 0)
+            gameManager.updateScore(value);
     }
 
     public void attack() {
         weapons[0].fire();
     }
-    
+
     public Rectangle2D[] getBounds() {
         if (health <= 0)
             return new Rectangle2D[0];

@@ -52,6 +52,8 @@ public class BossEnemy extends Enemy {
         x += dx;
         y += dy;
         moves.act(t);
+        if (health <= 0)
+            gameManager.updateScore(value);
     }
 
     public void basicAttack() {
