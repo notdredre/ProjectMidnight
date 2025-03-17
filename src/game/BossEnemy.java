@@ -52,6 +52,10 @@ public class BossEnemy extends Enemy {
         x += dx;
         y += dy;
         moves.act(t);
+    }
+
+    public void damage(int damage) {
+        super.damage(damage);
         if (health <= 0)
             gameManager.updateScore(value);
     }
