@@ -35,6 +35,7 @@ public class BossEnemy extends Enemy {
         weapons[6].setAim(0, -1);
         weapons[7].setAim(-1, -1);
         moves = new BossMovesFar(this);
+        value = 250;
     }
 
     public void changeMoveSet(MoveSet moves) {
@@ -51,6 +52,12 @@ public class BossEnemy extends Enemy {
         x += dx;
         y += dy;
         moves.act(t);
+    }
+
+    public void damage(int damage) {
+        super.damage(damage);
+        if (health <= 0)
+            gameManager.updateScore(value);
     }
 
     public void basicAttack() {

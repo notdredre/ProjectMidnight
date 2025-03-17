@@ -12,6 +12,7 @@ public class GameManager implements Drawable, Updatable {
     private ArrayList<Updatable> updatables;
     private ArrayList<TargetPlayer> targetPlayers;
     private Vector<CollisionChecker> collisionCheckers;
+    private int score;
 
     private GameManager() {
         gameEntities = new Vector<>();
@@ -19,6 +20,7 @@ public class GameManager implements Drawable, Updatable {
         targetPlayers = new ArrayList<>();
         damageEntities = new ArrayList<>();
         collisionCheckers = new Vector<>();
+        score = 0;
     }
 
     public static GameManager getGameManager() {
@@ -57,6 +59,14 @@ public class GameManager implements Drawable, Updatable {
         }
     }
 
+    public void updateScore(int value) {
+        score += value;
+    }
+
+    public int getScore() {
+        return score;
+    }
+    
     public void update() {
         for (Updatable u : updatables) {
             u.update();

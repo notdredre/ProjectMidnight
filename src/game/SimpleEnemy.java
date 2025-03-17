@@ -26,6 +26,7 @@ public class SimpleEnemy extends Enemy {
         weapons[0].setAim(-1, 0);
         moves = new SimpleEnemyMoves(this);
         enemySprite = new Sprite(this, "src/game/res/sprites/Enemy.gif");
+        value = 100;
     }
 
     public void draw(Graphics2D g2) {
@@ -39,13 +40,19 @@ public class SimpleEnemy extends Enemy {
     public void update() {
         x += dx;
         y += dy;
-       moves.act(t);
+        moves.act(t);
     }
 
+    public void damage(int damage) {
+        super.damage(damage);
+        if (health <= 0)
+            gameManager.updateScore(value);
+    }
+    
     public void attack() {
         weapons[0].fire();
     }
-    
+
     public Rectangle2D[] getBounds() {
         if (health <= 0)
             return new Rectangle2D[0];
