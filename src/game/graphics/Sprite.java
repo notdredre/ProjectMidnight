@@ -37,6 +37,10 @@ public class Sprite implements Drawable {
         this.post = post;
     }
 
+    public void resetPostFX() {
+        post.reset();
+    }
+
     public void draw(Graphics2D g2) {
         x = owner.getX();
         y = owner.getY();
