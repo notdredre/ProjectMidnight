@@ -74,6 +74,10 @@ public class Player extends DamageEntity {
             
     }
 
+    public int getHealth() {
+        return health;
+    }
+    
     public void damage(int damage) {
         anim.setFX(new FlashFX());
         super.damage(damage);
