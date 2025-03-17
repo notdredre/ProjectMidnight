@@ -62,6 +62,10 @@ public class GameManager implements Drawable, Updatable {
     public void updateScore(int value) {
         score += value;
     }
+
+    public int getScore() {
+        return score;
+    }
     
     public void update() {
         for (Updatable u : updatables) {
