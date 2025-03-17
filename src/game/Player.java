@@ -17,7 +17,7 @@ public class Player extends DamageEntity {
     private NormalWeapon normal;
     private SpecialWeapon special;
     private int charge;
-    private Sound chargeSound, lowHealthSound;
+    private Sound chargeSound, lowHealthSound, background;
     private boolean discharged;
     private final int CHARGE_LIMIT = 500;
     private Animation anim;
@@ -32,6 +32,7 @@ public class Player extends DamageEntity {
         discharged = false;
         chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.7f);
         lowHealthSound = new Sound("src/game/res/sfx/Health Low.wav", true, 0.7f);
+        anim = new Animation(this, "src/game/res/sprites/player test.gif", 5, 5); 
         anim = new Animation(this, "src/game/res/sprites/PlayerSheet.gif", 6, 6, 40, true);
         anim.rowAnim("Forward", 0);
         anim.rowAnim("ForwardLow", 1);
@@ -40,6 +41,8 @@ public class Player extends DamageEntity {
         anim.rowAnim("Up", 4);
         anim.rowAnim("UpLow", 5);
         anim.setState("Forward");
+        background = new Sound("src/game/res/sfx/Background.wav", true, 0.8f);
+        background.play();
     }
 
     public void draw(Graphics2D g2) {
