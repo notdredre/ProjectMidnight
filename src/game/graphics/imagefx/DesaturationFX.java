@@ -19,15 +19,18 @@ public class DesaturationFX implements ImageFX {
         t = Math.clamp(t + 1, 0, numSteps);
         int bufferWidth = buffer.getWidth();
         int bufferHeight = buffer.getHeight();
-        BufferedImage copy = new BufferedImage(bufferWidth, bufferHeight, BufferedImage.TYPE_INT_ARGB);
         int[] in = new int[bufferWidth * bufferHeight];
         buffer.getRGB(0, 0, bufferWidth, bufferHeight, in, 0, bufferHeight);
         for (int i = 0; i < bufferWidth * bufferHeight; i++) {
             int pixel = in[i];
+            if (pixel == 0)
+                continue;
             int comp[] = new int[4];
             for (int j = 0; j < 4; j++) {
                 comp[j] = pixel >> ((3 - j) * 8) & 255;
             }
+            if (comp[1] == comp[2] && comp[2] == comp[3])
+                continue;
             int grey = 0;
             for (int j = 1; j < 4; j++) {
                 grey += comp[j];
@@ -42,8 +45,8 @@ public class DesaturationFX implements ImageFX {
             pixel = comp[3] | comp[2] << 8 | comp[1] << 16 | comp[0] << 24;
             in[i] = pixel;
         }
-        copy.setRGB(0, 0, bufferWidth, bufferHeight, in, 0, bufferWidth);
-        return copy;
+        buffer.setRGB(0, 0, bufferWidth, bufferHeight, in, 0, bufferWidth);
+        return buffer;
     }
 
     public void reset() {
