@@ -5,14 +5,16 @@ import java.awt.image.BufferedImage;
 public class DesaturationFX implements ImageFX {
     private int t;
     private int numSteps;
+    private float amount;
 
-    public DesaturationFX(int numSteps) {
+    public DesaturationFX(int numSteps, float amount) {
         t = -1;
         this.numSteps = numSteps;
+        this.amount = amount;
     }
 
     public DesaturationFX() {
-        this(20);
+        this(100, 0.8f);
     }
 
     public BufferedImage process(BufferedImage buffer) {
@@ -38,7 +40,7 @@ public class DesaturationFX implements ImageFX {
             grey /= 3;
             int diff[] = new int[3];
             for (int j = 0; j < 3; j++) {
-                diff[j] = (grey - comp[j + 1]) * t / numSteps;
+                diff[j] = Math.round((grey - comp[j + 1]) * t / numSteps * amount);
                 comp[j + 1] += diff[j];
             }
 
