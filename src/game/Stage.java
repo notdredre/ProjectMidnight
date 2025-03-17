@@ -21,11 +21,11 @@ public class Stage implements Updatable {
     public void initStage() {
         int x = -50;
         for (int i = 0; i < 20; i++) {
-            int y = rand.nextInt(700) + 100;
+            int y = (rand.nextInt(4) + 1) * 50;
             entities.add(new SimpleEnemy(x, y));
         }
         for (int i = 0; i < 5; i++) {
-            int y = rand.nextInt(500) + 300;
+            int y = (rand.nextInt(4) + 1) * 50;
             entities.add(new BossEnemy(x, y));
         }
     }
