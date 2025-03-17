@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
                     now = System.currentTimeMillis();
                     gameManager.update();
                     Graphics2D f2 = (Graphics2D) frameBuffer.getGraphics();
-                    f2.setColor(Color.BLUE);
+                    f2.setColor(Color.BLACK);
                     f2.fillRect(0, 0, 1000, 1000);
                     gameManager.draw(f2);
                     f2.dispose();

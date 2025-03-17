@@ -5,12 +5,14 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import game.actions.BossMovesFar;
 import game.actions.MoveSet;
+import game.graphics.Sprite;
 import game.weapons.EnemyGrenadeWeapon;
 import game.weapons.NormalEnemyWeapon;
 import game.weapons.Weapon;
 
 public class BossEnemy extends Enemy {
     private MoveSet moves;
+    private Sprite bossSprite;
 
     public BossEnemy() {
         this(0, 0);
@@ -19,6 +21,7 @@ public class BossEnemy extends Enemy {
     public BossEnemy(int x, int y) {
         super(x, y);
         health = 30;
+        bossSprite = new Sprite(this, "src/game/res/sprites/BossEnemy.gif");
         weapons = new Weapon[8];
         weapons[0] = new EnemyGrenadeWeapon(this);
         for (int i = 1; i < 8; i++)
@@ -40,8 +43,7 @@ public class BossEnemy extends Enemy {
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.YELLOW);
-        g2.fillOval(x, y, 15, 15);
+        bossSprite.draw(g2);
     }
 
     @Override

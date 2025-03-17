@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 
-import game.anim.Animation;
+import game.graphics.Animation;
 import game.sound.Sound;
 import game.weapons.NormalWeapon;
 import game.weapons.SpecialWeapon;
@@ -32,10 +32,16 @@ public class Player extends DamageEntity {
         discharged = false;
         chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.7f);
         lowHealthSound = new Sound("src/game/res/sfx/Health Low.wav", true, 0.7f);
-        anim = new Animation(this, "src/game/res/sprites/player test.gif", 5, 5);
+        anim = new Animation(this, "src/game/res/sprites/player test.gif", 5, 5); 
+        anim = new Animation(this, "src/game/res/sprites/PlayerSheet.gif", 6, 6, 40, true);
+        anim.rowAnim("Forward", 0);
+        anim.rowAnim("ForwardLow", 1);
+        anim.rowAnim("Down", 2);
+        anim.rowAnim("DownLow", 3);
+        anim.rowAnim("Up", 4);
+        anim.rowAnim("UpLow", 5);
+        anim.setState("Forward");
         background = new Sound("src/game/res/sfx/Background.wav", true, 0.8f);
-        anim.rowAnim("Normal", 0);
-        anim.setState("Normal");
         background.play();
     }
 
@@ -44,6 +50,13 @@ public class Player extends DamageEntity {
     }
 
     public void update() {
+        if (dy > 0) {
+            anim.setState("Down");
+        } else if (dy < 0) {
+            anim.setState("Up");
+        } else {
+            anim.setState("Forward");
+        }
         x += dx;
         y += dy;
         if (weapon.equals(normal) && charge < CHARGE_LIMIT)
@@ -56,10 +69,18 @@ public class Player extends DamageEntity {
             discharged = true;
             chargeSound.play();
         }
-        if (health <= 5 && !lowHealthSound.isPlaying())
-            lowHealthSound.play();
+            
     }
 
+    public void damage(int damage) {
+        super.damage(damage);
+        if (health <= 5) {
+            anim.setModifier("Low");
+            if (!lowHealthSound.isPlaying())
+                lowHealthSound.play();
+        }
+    }
+    
     public void handleKeyInput(Collection<KeyEvent> events) {
         dx = dy = 0;
         if (health <= 0)
