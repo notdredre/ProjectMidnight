@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
                     gameManager.draw(f2);
                     f2.dispose();
                     Graphics2D g2 = (Graphics2D) getGraphics();
-                    g2.drawImage(frameBuffer.getScaledInstance(2000, 2000, BufferedImage.SCALE_FAST), 0, 0, null);
+                    g2.drawImage(frameBuffer, 0, 0, null);
                 }
             }
         } catch (Exception e) {
