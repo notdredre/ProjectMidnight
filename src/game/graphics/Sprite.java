@@ -8,16 +8,19 @@ import javax.imageio.ImageIO;
 
 import game.Drawable;
 import game.GameEntity;
+import game.graphics.imagefx.ImageFX;
 
 public class Sprite implements Drawable {
     private GameEntity owner;
     private String path;
     private BufferedImage spriteImage;
     private int x, y;
+    private ImageFX post;
 
     public Sprite(GameEntity owner, String path) {
         this.owner = owner;
         this.path = path;
+        post = null;
         loadSprite();
     }
 
@@ -30,9 +33,16 @@ public class Sprite implements Drawable {
         }
     }
 
+    public void setPostFX(ImageFX post) {
+        this.post = post;
+    }
+
     public void draw(Graphics2D g2) {
         x = owner.getX();
         y = owner.getY();
-        g2.drawImage(spriteImage, x, y, null);
+        BufferedImage toDraw = spriteImage;
+        if (post!= null)
+            toDraw = post.process(toDraw);
+        g2.drawImage(toDraw, x, y, null);
     }
 }
