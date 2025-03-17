@@ -18,6 +18,7 @@ public class FlashFX implements ImageFX {
     public BufferedImage process(BufferedImage buffer) {
         if (t >= numSteps)
             return buffer;
+        t++;
         int bufferWidth = buffer.getWidth();
         int bufferHeight = buffer.getHeight();
         BufferedImage copy = new BufferedImage(bufferWidth, bufferHeight, BufferedImage.TYPE_INT_ARGB);
@@ -42,7 +43,8 @@ public class FlashFX implements ImageFX {
                     comp[j] = Math.clamp(comp[j] - 255 / numSteps, comp[j], 255);
                 }
             }
-            
+            pixel = comp[3] | comp[2] << 8 | comp[1] << 16 | comp[0] << 24;
+            in[i] = pixel;       
         }
         copy.setRGB(0, 0, bufferWidth, bufferHeight, in, 0, bufferWidth);
         return copy;
