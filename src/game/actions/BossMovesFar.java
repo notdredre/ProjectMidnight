@@ -1,5 +1,7 @@
 package game.actions;
 
+import java.util.Random;
+
 import game.BossEnemy;
 import game.GameEntity;
 import game.GameManager;
@@ -8,12 +10,15 @@ import game.TargetPlayer;
 public class BossMovesFar extends MoveSet implements TargetPlayer {
     private final int NUM_STEPS = 1000;
     private BossEnemy enemy;
-    private int playerX, playerY;
+    private int playerX, playerY, playerYOffset;
+    private Random rand;
     public BossMovesFar(GameEntity owner) {
         super(owner);
         enemy = (BossEnemy) owner;
         GameManager gameManager = GameManager.getGameManager();
         gameManager.addTargetPlayer(this);
+        rand = new Random();
+        playerYOffset = rand.nextInt(50) + 50; 
     }
 
     public void updatePlayerLocation(int x, int y) {
@@ -31,7 +36,7 @@ public class BossMovesFar extends MoveSet implements TargetPlayer {
             enemy.moveLeft();
         }
         if (step < 600) {
-            enemy.move(0, playerY - enemy.getY());
+            enemy.move(0, playerY + playerYOffset - enemy.getY());
         }
         if (step == 999) {
             enemy.stay();
