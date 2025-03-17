@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class GameManager implements Drawable, Updatable {
     private static GameManager instance = null;
-    private GameEntity player;
+    private Player player;
     private Vector<GameEntity> gameEntities;
     private ArrayList<DamageEntity> damageEntities;
     private ArrayList<Updatable> updatables;
@@ -32,7 +32,7 @@ public class GameManager implements Drawable, Updatable {
     public void addGameEntity(GameEntity ge) {
         gameEntities.add(ge);
         if (ge instanceof Player)
-            player = ge;
+            player = (Player) ge;
         if (ge instanceof DamageEntity)
             damageEntities.add((DamageEntity) ge);
         if (ge instanceof CollisionChecker)
@@ -65,6 +65,10 @@ public class GameManager implements Drawable, Updatable {
 
     public int getScore() {
         return score;
+    }
+
+    public int getHealth() {
+        return player.getHealth();
     }
     
     public void update() {

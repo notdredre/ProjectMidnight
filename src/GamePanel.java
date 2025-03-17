@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import game.GameManager;
 import game.InputHandler;
+import game.Overlay;
 import game.Player;
 import game.Stage;
 import game.graphics.imagefx.DesaturationFX;
@@ -16,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
     private long now, diff;
     private ImageFX desat;
     private Player player;
+    private Overlay overlay;
 
     public GamePanel() {
         gameManager = GameManager.getGameManager();
@@ -23,6 +25,7 @@ public class GamePanel extends JPanel implements Runnable {
         player = new Player();
         addKeyListener(new InputHandler(player));
         Stage stage = new Stage();
+        overlay = new Overlay();
         stage.initStage();
         player.setTicking(true);
         runThread = new Thread(this);
@@ -46,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
                     f2.setColor(Color.BLACK);
                     f2.fillRect(0, 0, 450, 450);
                     gameManager.draw(f2);
+                    overlay.draw(f2);
                     f2.dispose();
                     if (player.getHealth() <= 5)
                         frameBuffer = desat.process(frameBuffer); 
