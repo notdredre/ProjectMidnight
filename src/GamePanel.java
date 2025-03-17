@@ -6,23 +6,28 @@ import game.GameManager;
 import game.InputHandler;
 import game.Player;
 import game.Stage;
+import game.graphics.imagefx.DesaturationFX;
+import game.graphics.imagefx.ImageFX;
 
 public class GamePanel extends JPanel implements Runnable {
     private GameManager gameManager;
     private BufferedImage frameBuffer;
     private Thread runThread;
     private long now, diff;
+    private ImageFX desat;
+    private Player player;
 
     public GamePanel() {
         gameManager = GameManager.getGameManager();
         frameBuffer = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
-        Player p = new Player();
-        addKeyListener(new InputHandler(p));
+        player = new Player();
+        addKeyListener(new InputHandler(player));
         Stage stage = new Stage();
         stage.initStage();
-        p.setTicking(true);
+        player.setTicking(true);
         runThread = new Thread(this);
         now = System.currentTimeMillis();
+        desat = new DesaturationFX();
     }
 
     public void startThread() {
@@ -42,6 +47,8 @@ public class GamePanel extends JPanel implements Runnable {
                     f2.fillRect(0, 0, 1000, 1000);
                     gameManager.draw(f2);
                     f2.dispose();
+                    if (player.getHealth() <= 5)
+                        frameBuffer = desat.process(frameBuffer); 
                     Graphics2D g2 = (Graphics2D) getGraphics();
                     g2.drawImage(frameBuffer, 0, 0, null);
                 }
