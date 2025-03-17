@@ -6,11 +6,13 @@ import java.awt.geom.Rectangle2D;
 
 import game.actions.MoveSet;
 import game.actions.SimpleEnemyMoves;
+import game.graphics.Sprite;
 import game.weapons.NormalEnemyWeapon;
 import game.weapons.Weapon;
 
 public class SimpleEnemy extends Enemy {
     private MoveSet moves;
+    private Sprite enemySprite;
 
     public SimpleEnemy() {
         this(0, 0);
@@ -23,13 +25,15 @@ public class SimpleEnemy extends Enemy {
         weapons[0] = new NormalEnemyWeapon(this);
         weapons[0].setAim(-1, 0);
         moves = new SimpleEnemyMoves(this);
+        enemySprite = new Sprite(this, "src/game/res/sprites/Enemy.gif");
     }
 
     public void draw(Graphics2D g2) {
-        if (health <= 0)
+        if (health <= 0) {
+            explosionAnim.draw(g2);
             return;
-        g2.setColor(Color.RED);
-        g2.fillRect(x, y, 10, 10);
+        }
+        enemySprite.draw(g2);
     }
 
     public void update() {
