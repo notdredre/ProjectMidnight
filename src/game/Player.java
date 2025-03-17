@@ -66,14 +66,18 @@ public class Player extends DamageEntity {
             discharged = true;
             chargeSound.play();
         }
+            
+    }
+
+    public void damage(int damage) {
+        super.damage(damage);
         if (health <= 5) {
             anim.setModifier("Low");
             if (!lowHealthSound.isPlaying())
                 lowHealthSound.play();
         }
-            
     }
-
+    
     public void handleKeyInput(Collection<KeyEvent> events) {
         dx = dy = 0;
         if (health <= 0)
