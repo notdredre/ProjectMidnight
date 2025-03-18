@@ -7,7 +7,7 @@ public class Stage implements Updatable {
     private ArrayList<DamageEntity> entities;
     private Random rand;
     private int t;
-    private final int INTERVAL = 500;
+    private final int INTERVAL = 1200;
     private GameManager gameManager;
 
     public Stage() {
@@ -36,8 +36,7 @@ public class Stage implements Updatable {
             return;
         }
         if (t % INTERVAL == 0) {
-            int amount = rand.nextInt(4);
-            for (int i = 0; i < amount; i++) {
+            for (int i = 0; i < 4; i++) {
                 int next = rand.nextInt(entities.size());
                 entities.get(next).setTicking(true);
                 entities.remove(next);
