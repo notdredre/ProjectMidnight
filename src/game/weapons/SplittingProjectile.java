@@ -15,7 +15,7 @@ public class SplittingProjectile extends EnemyProjectile {
     private Sprite grenadeSprite;
     private Animation explosionAnim;
     private FlashFX flash;
-    private Sound grenadeSound;
+    private Sound grenadeSound, explosionSound;
 
     public SplittingProjectile(GameEntity source) {
         super(source);
@@ -30,7 +30,8 @@ public class SplittingProjectile extends EnemyProjectile {
         explosionAnim = new Animation(this, "src/game/res/sprites/Explosion1.gif", 1, 10, 50);
         explosionAnim.rowAnim("BOOM", 0);
         explosionAnim.setState("BOOM");
-        grenadeSound = new Sound("src/game/res/sfx/Grenade Launch.wav", 0.6f);
+        grenadeSound = new Sound("src/game/res/sfx/Grenade Launch.wav", 0.45f);
+        explosionSound = new Sound("src/game/res/sfx/Explosion 1.wav", 0.5f);
     }
 
     public void draw(Graphics2D g2) {
@@ -50,6 +51,7 @@ public class SplittingProjectile extends EnemyProjectile {
         if (range % 60 == 0)
             grenadeSprite.resetPostFX();
         if (range <= 10) {
+            explosionSound.play();
             grenadeSound.stop();
             fragments[0].fire(-1, 1);
             fragments[1].fire(-1, 0);

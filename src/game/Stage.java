@@ -9,6 +9,7 @@ public class Stage implements Updatable {
     private int t;
     private final int INTERVAL = 1000;
     private GameManager gameManager;
+    private boolean isFinished;
 
     public Stage() {
         entities = new ArrayList<>();
@@ -16,6 +17,7 @@ public class Stage implements Updatable {
         gameManager = GameManager.getGameManager();
         gameManager.addUpdatable(this);
         rand = new Random();
+        isFinished = false;
     }
 
     public void initStage() {
@@ -32,11 +34,20 @@ public class Stage implements Updatable {
 
     public void update() {
         t++;
+        if (entities.isEmpty()) {
+            isFinished = true;
+            return;
+        }
         if (t % INTERVAL == 0) {
             int amount = rand.nextInt(7);
             for (int i = 0; i < amount; i++) {
                 int next = rand.nextInt(entities.size());
                 entities.get(next).setTicking(true);
+                entities.remove(next);
+                if (entities.isEmpty()) {
+                    isFinished = true;
+                    return;
+                }
             }
         }
     }
