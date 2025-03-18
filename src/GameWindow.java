@@ -7,6 +7,7 @@ public class GameWindow extends JFrame {
         setSize(1000, 1000);
         setLocationRelativeTo(null);
         setResizable(false);
+        setTitle("Project Midnight");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gamePanel = new GamePanel();
         add(gamePanel);

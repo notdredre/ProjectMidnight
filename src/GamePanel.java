@@ -24,7 +24,6 @@ public class GamePanel extends JPanel implements Runnable {
     private Player player;
     private Overlay overlay;
     private Stage stage;
-    private BufferedImage background;
 
     public GamePanel() {
         gameManager = GameManager.getGameManager();
@@ -38,13 +37,6 @@ public class GamePanel extends JPanel implements Runnable {
         runThread = new Thread(this);
         now = System.currentTimeMillis();
         desat = new DesaturationFX();
-        File bgFile = new File("src/game/res/sprites/Background.gif");
-        try {
-            background = ImageIO.read(bgFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
     }
 
     public void startThread() {
