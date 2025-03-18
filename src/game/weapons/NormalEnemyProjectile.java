@@ -3,12 +3,20 @@ package game.weapons;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import game.GameEntity;
+import game.sound.Sound;
 
 public class NormalEnemyProjectile extends EnemyProjectile {
+    private Sound fireSound;
     public NormalEnemyProjectile(GameEntity source) {
         super(source);
         damage = 2;
         range = 500;
+        fireSound = new Sound("src/game/res/sfx/Normal Weapon.wav", 0.3f);
+    }
+
+    public void fire(int aimX, int aimY) {
+        super.fire(aimX, aimY);
+        fireSound.play();
     }
 
     public void reset() {
