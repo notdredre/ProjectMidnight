@@ -8,8 +8,8 @@ import game.Enemy;
 import game.GameEntity;
 
 public abstract class EnemyProjectile extends Projectile {
-    public EnemyProjectile(GameEntity source) {
-        super(source);
+    public EnemyProjectile(GameEntity source, int offsetX, int offsetY) {
+        super(source, offsetX, offsetY);
     }
 
     public void checkCollisions(Collection<DamageEntity> damageEntities) {
@@ -21,8 +21,12 @@ public abstract class EnemyProjectile extends Projectile {
             if (!d.equals(source)) {
                 for (Rectangle2D r : d.getBounds()) {
                     for (Rectangle2D r2 : getBounds()) {
-                        if (r.contains(r2))
-                            d.damage(damage);
+                        if (r.contains(r2)) {
+                            if (!collided.contains(d))
+                                d.damage(damage); 
+                            collided.add(d);
+                        }
+                            
                     }
                 }
             }

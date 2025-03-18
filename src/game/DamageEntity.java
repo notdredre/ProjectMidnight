@@ -20,6 +20,10 @@ public abstract class DamageEntity extends GameEntity {
         explosionAnim.setState("BOOM");
     }
 
+    public int getHealth() {
+        return health;
+    }
+    
     public void tick() {
         if (!isTicking)
             return;

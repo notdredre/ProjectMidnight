@@ -11,8 +11,8 @@ public class NormalProjectile extends Projectile {
     private Sound fireSound;
     private Sprite projectileSprite;
 
-    public NormalProjectile(GameEntity source) {
-        super(source);
+    public NormalProjectile(GameEntity source, int offsetX, int offsetY) {
+        super(source, offsetX, offsetY);
         damage = 5;
         range = 500;
         fireSound = new Sound("src/game/res/sfx/Normal Weapon.wav", 0.7f);

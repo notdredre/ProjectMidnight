@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Stage implements Updatable {
-    private ArrayList<GameEntity> entities;
+    private ArrayList<DamageEntity> entities;
     private Random rand;
     private int t;
-    private final int INTERVAL = 1000;
+    private final int INTERVAL = 500;
     private GameManager gameManager;
 
     public Stage() {
@@ -32,11 +32,18 @@ public class Stage implements Updatable {
 
     public void update() {
         t++;
+        if (entities.isEmpty()) {
+            return;
+        }
         if (t % INTERVAL == 0) {
-            int amount = rand.nextInt(7);
+            int amount = rand.nextInt(4);
             for (int i = 0; i < amount; i++) {
                 int next = rand.nextInt(entities.size());
                 entities.get(next).setTicking(true);
+                entities.remove(next);
+                if (entities.isEmpty()) {
+                    return;
+                }
             }
         }
     }

@@ -60,6 +60,16 @@ public class GameManager implements Drawable, Updatable {
         }
     }
 
+    public boolean isFinished() {
+        for (DamageEntity d : damageEntities) {
+            if (d.equals(player))
+                continue;
+            if (d.getHealth() > 0 && d.getY() > 0)
+                return false;
+        }
+        return true;
+    }
+
     public void updateScore(int value) {
         score += value;
         charge += value;

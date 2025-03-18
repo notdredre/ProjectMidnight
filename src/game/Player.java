@@ -21,7 +21,7 @@ public class Player extends DamageEntity {
     private int charge;
     private Sound chargeSound, lowHealthSound, background;
     private boolean discharged;
-    private final int CHARGE_LIMIT = 2000;
+    private final int CHARGE_LIMIT = 600;
     private Animation anim;
 
     public Player(int x, int y) {
@@ -37,7 +37,7 @@ public class Player extends DamageEntity {
         weapon = normal;
         weapon.setAim(1, 0);
         discharged = false;
-        chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.7f);
+        chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.65f);
         lowHealthSound = new Sound("src/game/res/sfx/Health Low.wav", true, 0.7f);
         anim = new Animation(this, "src/game/res/sprites/player test.gif", 5, 5); 
         anim = new Animation(this, "src/game/res/sprites/PlayerSheet.gif", 6, 6, 40, true);
@@ -127,7 +127,7 @@ public class Player extends DamageEntity {
 
     public Rectangle2D[] getBounds() {
         Rectangle2D[] bounds = new Rectangle2D[1];
-        bounds[0] = new Rectangle2D.Double(x, y, 10, 10);
+        bounds[0] = new Rectangle2D.Double(x + 6, y + 12, 20, 7);
         return bounds;
     }
 }

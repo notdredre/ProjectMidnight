@@ -20,7 +20,7 @@ public class BossEnemy extends Enemy {
 
     public BossEnemy(int x, int y) {
         super(x, y);
-        health = 30;
+        health = 60;
         bossSprite = new Sprite(this, "src/game/res/sprites/BossEnemy.gif");
         weapons = new Weapon[8];
         weapons[0] = new EnemyGrenadeWeapon(this);
@@ -44,6 +44,10 @@ public class BossEnemy extends Enemy {
 
     @Override
     public void draw(Graphics2D g2) {
+        if (health <= 0) {
+            explosionAnim.draw(g2);
+            return;
+        }
         bossSprite.draw(g2);
     }
 
@@ -51,7 +55,7 @@ public class BossEnemy extends Enemy {
     public void update() {
         x += dx;
         y += dy;
-        if (t <= 5000)
+        if (t <= 2000)
             moves.act(t);
         else
             moveUp();
@@ -89,7 +93,11 @@ public class BossEnemy extends Enemy {
 
     @Override
     public Rectangle2D[] getBounds() {
-        return new Rectangle2D[0];
+        if (health <= 0)
+            return new Rectangle2D[0];
+        Rectangle2D[] bounds = new Rectangle2D[1];
+        bounds[0] = new Rectangle2D.Double(x + 15, y + 10, 25, 28);
+        return bounds;
     }
     
 }

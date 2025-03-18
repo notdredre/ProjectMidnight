@@ -7,14 +7,14 @@ import java.awt.geom.Rectangle2D;
 import game.GameEntity;
 import game.sound.Sound;
 
-public class Lazer extends Projectile {
+public class Laser extends Projectile {
     private Sound fireSound;
 
-    public Lazer(GameEntity source) {
-        super(source);
+    public Laser(GameEntity source, int offsetX, int offsetY) {
+        super(source, offsetX, offsetY);
         damage = 15;
         range = 50;
-        fireSound = new Sound("src/game/res/sfx/Lazer.wav", 0.7f);
+        fireSound = new Sound("src/game/res/sfx/Laser.wav", 0.62f);
     }
 
     @Override
