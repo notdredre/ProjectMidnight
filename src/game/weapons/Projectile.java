@@ -42,10 +42,7 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
         isActive = true;
     }
 
-    public void reset() {
-        isActive = false;
-        t = 0;
-    }
+    public abstract void reset();
 
     public boolean isActive() {
         return isActive;
@@ -59,8 +56,10 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
                 for (Rectangle2D r : d.getBounds()) {
                     for (Rectangle2D r2 : getBounds()) {
                         if (r.intersects(r2)) {
-                            if (!collided.contains(d))
+                            if (!collided.contains(d)) {
                                 d.damage(damage);
+                                reset();
+                            }            
                             collided.add(d);
                         }
                             
@@ -70,11 +69,5 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
         }
     }
 
-    public Rectangle2D[] getBounds() {
-        if (!isActive)
-            return new Rectangle2D[0];
-        Rectangle2D[] bounds = new Rectangle2D[1];
-        bounds[0] = new Rectangle2D.Double(x, y, 5, 5);
-        return bounds;
-    }
+    
 }

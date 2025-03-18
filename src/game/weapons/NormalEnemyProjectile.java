@@ -1,6 +1,7 @@
 package game.weapons;
 
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 import game.GameEntity;
 import game.sound.Sound;
@@ -20,7 +21,8 @@ public class NormalEnemyProjectile extends EnemyProjectile {
     }
 
     public void reset() {
-        super.reset();
+        isActive = false;
+        t = 0;
         range = 500;
     }
 
@@ -29,5 +31,13 @@ public class NormalEnemyProjectile extends EnemyProjectile {
             g2.setColor(Color.WHITE);
             g2.drawOval(x, y, 5, 5);
         }
+    }
+    
+    public Rectangle2D[] getBounds() {
+        if (!isActive)
+            return new Rectangle2D[0];
+        Rectangle2D[] bounds = new Rectangle2D[1];
+        bounds[0] = new Rectangle2D.Double(x, y, 5, 5);
+        return bounds;
     }
 }

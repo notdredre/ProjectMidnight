@@ -3,7 +3,9 @@ package game.weapons;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Collection;
 
+import game.DamageEntity;
 import game.GameEntity;
 import game.sound.Sound;
 
@@ -40,8 +42,27 @@ public class Laser extends Projectile {
     }
 
     public void reset() {
-        super.reset();
+        isActive = false;
+        t = 0;
         range = 50;
+    }
+
+    public void checkCollisions(Collection<DamageEntity> damageEntities) {
+        if (!isActive)
+            return;
+        for (DamageEntity d : damageEntities) {
+            if (!d.equals(source)) {
+                for (Rectangle2D r : d.getBounds()) {
+                    for (Rectangle2D r2 : getBounds()) {
+                        if (r.intersects(r2)) {
+                            if (t % 10 == 0)
+                                d.damage(damage);
+                        }
+                            
+                    }
+                }
+            }
+        }
     }
 
     public Rectangle2D[] getBounds() {
