@@ -9,6 +9,6 @@ public class EnemyGrenadeWeapon extends Weapon {
         for (int i = 0; i < AMMO_AMT; i++) {
             pool[i] = new SplittingProjectile(owner);
         }
-        cooldown = 50;
+        cooldown = 150;
     }
 }
