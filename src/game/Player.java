@@ -24,6 +24,12 @@ public class Player extends DamageEntity {
     private final int CHARGE_LIMIT = 500;
     private Animation anim;
 
+    public Player(int x, int y) {
+        this();
+        this.x = x;
+        this.y = y;
+    }
+    
     public Player() {
         health = 20;
         normal = new NormalWeapon(this);
