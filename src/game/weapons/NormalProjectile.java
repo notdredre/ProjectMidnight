@@ -1,9 +1,7 @@
 package game.weapons;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-
 import game.GameEntity;
 import game.graphics.Sprite;
 import game.sound.Sound;
@@ -33,8 +31,6 @@ public class NormalProjectile extends Projectile {
 
     public void draw(Graphics2D g2) {
         if (isActive) {
-            g2.setColor(Color.RED);
-            g2.fillOval(x - 2, y - 2, 12, 12);
             projectileSprite.draw(g2);
         }
     }
