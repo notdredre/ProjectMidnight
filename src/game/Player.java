@@ -21,7 +21,7 @@ public class Player extends DamageEntity {
     private int charge;
     private Sound chargeSound, lowHealthSound, background;
     private boolean discharged;
-    private final int CHARGE_LIMIT = 500;
+    private final int CHARGE_LIMIT = 2000;
     private Animation anim;
 
     public Player(int x, int y) {
@@ -29,14 +29,13 @@ public class Player extends DamageEntity {
         this.x = x;
         this.y = y;
     }
-    
+
     public Player() {
         health = 20;
         normal = new NormalWeapon(this);
         special = new SpecialWeapon(this);
         weapon = normal;
         weapon.setAim(1, 0);
-        charge = 0;
         discharged = false;
         chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.7f);
         lowHealthSound = new Sound("src/game/res/sfx/Health Low.wav", true, 0.7f);
@@ -58,6 +57,7 @@ public class Player extends DamageEntity {
     }
 
     public void update() {
+        charge = gameManager.getCharge();
         if (dy > 0) {
             anim.setState("Down");
         } else if (dy < 0) {
@@ -81,7 +81,7 @@ public class Player extends DamageEntity {
     }
 
     public int getHealth() {
-        return health;
+        return Math.clamp(health, 0, 200);
     }
     
     public void damage(int damage) {
@@ -115,7 +115,7 @@ public class Player extends DamageEntity {
                     break;
                 case KeyEvent.VK_Z:
                     if (charge >= 0 && weapon.equals(special))
-                        charge--;
+                        gameManager.discharge();
                     weapon.fire();
                     break;
                 case KeyEvent.VK_X:
