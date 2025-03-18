@@ -21,8 +21,12 @@ public abstract class EnemyProjectile extends Projectile {
             if (!d.equals(source)) {
                 for (Rectangle2D r : d.getBounds()) {
                     for (Rectangle2D r2 : getBounds()) {
-                        if (r.contains(r2))
-                            d.damage(damage);
+                        if (r.contains(r2)) {
+                            if (!collided.contains(d))
+                                d.damage(damage); 
+                            collided.add(d);
+                        }
+                            
                     }
                 }
             }

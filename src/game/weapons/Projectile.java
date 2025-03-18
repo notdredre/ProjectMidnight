@@ -1,6 +1,7 @@
 package game.weapons;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import game.CollisionChecker;
@@ -11,6 +12,7 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
     protected int damage, range, offsetX, offsetY;
     protected GameEntity source;
     protected boolean isActive;
+    protected ArrayList<DamageEntity> collided;
 
     public Projectile(GameEntity source, int offsetX, int offsetY) {
         super();
@@ -18,6 +20,7 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
         isActive = false;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
+        collided = new ArrayList<>();
     }
 
 
@@ -56,7 +59,9 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
                 for (Rectangle2D r : d.getBounds()) {
                     for (Rectangle2D r2 : getBounds()) {
                         if (r.intersects(r2)) {
-                            d.damage(damage);
+                            if (!collided.contains(d))
+                                d.damage(damage);
+                            collided.add(d);
                         }
                             
                     }
