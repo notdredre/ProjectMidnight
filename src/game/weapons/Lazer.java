@@ -14,7 +14,7 @@ public class Lazer extends Projectile {
         super(source, offsetX, offsetY);
         damage = 15;
         range = 50;
-        fireSound = new Sound("src/game/res/sfx/Lazer.wav", 0.7f);
+        fireSound = new Sound("src/game/res/sfx/Lazer.wav", 0.55f);
     }
 
     @Override
