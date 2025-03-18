@@ -18,13 +18,14 @@ public class GamePanel extends JPanel implements Runnable {
     private ImageFX desat;
     private Player player;
     private Overlay overlay;
+    private Stage stage;
 
     public GamePanel() {
         gameManager = GameManager.getGameManager();
         frameBuffer = new BufferedImage(450, 450, BufferedImage.TYPE_INT_ARGB);
         player = new Player(50, 215);
         addKeyListener(new InputHandler(player));
-        Stage stage = new Stage();
+        stage = new Stage();
         overlay = new Overlay();
         stage.initStage();
         player.setTicking(true);
@@ -49,6 +50,11 @@ public class GamePanel extends JPanel implements Runnable {
                     f2.setColor(Color.BLACK);
                     f2.fillRect(0, 0, 450, 450);
                     gameManager.draw(f2);
+                    if (stage.isFinished() && player.getHealth() > 0)
+                        overlay.setResult(1);
+                    if (player.getHealth() == 0) {
+                        overlay.setResult(0);
+                    }
                     overlay.draw(f2);
                     f2.dispose();
                     if (player.getHealth() <= 5)

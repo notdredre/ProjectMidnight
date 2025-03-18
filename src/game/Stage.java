@@ -32,6 +32,10 @@ public class Stage implements Updatable {
         }
     }
 
+    public boolean isFinished() {
+        return isFinished;
+    }
+    
     public void update() {
         t++;
         if (entities.isEmpty()) {
