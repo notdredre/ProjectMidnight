@@ -1,9 +1,7 @@
 package game.weapons;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-
 import game.GameEntity;
 import game.graphics.Animation;
 import game.graphics.Sprite;

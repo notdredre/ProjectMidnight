@@ -1,9 +1,7 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-
 import game.actions.MoveSet;
 import game.actions.SimpleEnemyMoves;
 import game.graphics.Sprite;

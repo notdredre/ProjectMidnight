@@ -1,14 +1,10 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.Collection;
-
 import game.graphics.Animation;
-import game.graphics.imagefx.FlashFX;
-import game.graphics.imagefx.ImageFX;
 import game.sound.Sound;
 import game.weapons.NormalWeapon;
 import game.weapons.SpecialWeapon;
@@ -105,7 +101,7 @@ public class Player extends DamageEntity {
     public Weapon getActiveWeapon() {
         return weapon;
     }
-    
+
     public void handleKeyInput(Collection<KeyEvent> events) {
         dx = dy = 0;
         if (health <= 0)
