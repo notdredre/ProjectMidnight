@@ -15,6 +15,7 @@ public class GameManager implements Drawable, Updatable {
     private ArrayList<TargetPlayer> targetPlayers;
     private Vector<CollisionChecker> collisionCheckers;
     private int score, charge;
+    private final int CHARGE_LIMIT = 600;
 
     private GameManager() {
         gameEntities = new Vector<>();
@@ -75,7 +76,7 @@ public class GameManager implements Drawable, Updatable {
     public void updateScore(int value) {
         score += value;
         if (player.getActiveWeapon() instanceof NormalWeapon)
-            charge += value;
+            charge = Math.clamp(value + charge, 0, CHARGE_LIMIT);
     }
 
     public int getCharge() {
