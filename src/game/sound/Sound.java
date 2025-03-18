@@ -12,7 +12,7 @@ public class Sound {
 
     public Sound(String path, boolean loop, float volume) {
         getClass().getClassLoader();
-        path = ClassLoader.getSystemResource(path).getPath();
+        path = getClass().getClassLoader().getResource(path).getPath();
         File target = new File(path);
         try {
             AudioInputStream in = AudioSystem.getAudioInputStream(target);
