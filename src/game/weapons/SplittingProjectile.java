@@ -17,7 +17,7 @@ public class SplittingProjectile extends EnemyProjectile {
 
     public SplittingProjectile(GameEntity source) {
         super(source);
-        damage = 20;
+        damage = 5;
         range = 110;
         fragments = new NormalEnemyProjectile[NUM_FRAGS];
         for (int i = 0; i < NUM_FRAGS; i++)

@@ -7,7 +7,7 @@ import game.GameEntity;
 public class NormalEnemyProjectile extends EnemyProjectile {
     public NormalEnemyProjectile(GameEntity source) {
         super(source);
-        damage = 5;
+        damage = 2;
         range = 500;
     }
 

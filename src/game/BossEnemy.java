@@ -51,7 +51,10 @@ public class BossEnemy extends Enemy {
     public void update() {
         x += dx;
         y += dy;
-        moves.act(t);
+        if (t <= 5000)
+            moves.act(t);
+        else
+            moveUp();
     }
 
     public void damage(int damage) {
