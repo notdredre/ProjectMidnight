@@ -67,6 +67,14 @@ public class Player extends DamageEntity {
         }
         x += dx;
         y += dy;
+        if (x >= 410)
+            x = 410;
+        if (x <= 0)
+            x = 0;
+        if (y >= 410)
+            y = 410;
+        if (y <= 0)
+            y = 0;
         if (weapon.equals(normal) && charge < CHARGE_LIMIT)
             charge++;
         if (charge <= 0 && weapon.equals(special)) {
