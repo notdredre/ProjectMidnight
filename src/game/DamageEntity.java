@@ -1,12 +1,15 @@
 package game;
 
 import game.graphics.Animation;
+import game.graphics.PostFX;
+import game.graphics.imagefx.FlashFX;
 import game.sound.Sound;
 
 public abstract class DamageEntity extends GameEntity {
     protected int health;
     protected Sound explosion;
     protected Animation explosionAnim;
+    protected PostFX processor;
 
     public DamageEntity() {
         this(0, 0);
@@ -35,6 +38,7 @@ public abstract class DamageEntity extends GameEntity {
     
     public void damage(int damage) {
         health -= damage;
+        processor.setPostFX(new FlashFX());
         if (health <= 0)
             explosion.play();
     }

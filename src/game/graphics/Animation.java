@@ -13,7 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Animation implements Drawable {
+public class Animation implements Drawable, PostFX{
     private HashMap<String, ArrayList<BufferedImage>> animMap;
     private int step, x, y, numCols, numRows;
     private long now, diff, target;
@@ -52,7 +52,7 @@ public class Animation implements Drawable {
         this.modifier = modifier;
     }
 
-    public void setFX(ImageFX post) {
+    public void setPostFX(ImageFX post) {
         this.post = post;
     }
 

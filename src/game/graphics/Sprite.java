@@ -10,7 +10,7 @@ import game.Drawable;
 import game.GameEntity;
 import game.graphics.imagefx.ImageFX;
 
-public class Sprite implements Drawable {
+public class Sprite implements Drawable, PostFX {
     private GameEntity owner;
     private String path;
     private BufferedImage spriteImage;

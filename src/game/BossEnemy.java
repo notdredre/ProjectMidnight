@@ -36,6 +36,7 @@ public class BossEnemy extends Enemy {
         weapons[7].setAim(-1, -1);
         moves = new BossMovesFar(this);
         value = 250;
+        processor = bossSprite;
     }
 
     public void changeMoveSet(MoveSet moves) {

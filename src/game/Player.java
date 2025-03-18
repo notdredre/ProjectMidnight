@@ -50,6 +50,7 @@ public class Player extends DamageEntity {
         anim.setState("Forward");
         background = new Sound("src/game/res/sfx/Background.wav", true, 0.8f);
         background.play();
+        processor = anim;
     }
 
     public void draw(Graphics2D g2) {
@@ -93,7 +94,6 @@ public class Player extends DamageEntity {
     }
     
     public void damage(int damage) {
-        anim.setFX(new FlashFX());
         super.damage(damage);
         if (health <= 5) {
             anim.setModifier("Low");
