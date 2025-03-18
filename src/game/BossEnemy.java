@@ -20,7 +20,7 @@ public class BossEnemy extends Enemy {
     public BossEnemy(int x, int y) {
         super(x, y);
         health = 40;
-        bossSprite = new Sprite(this, "src/game/res/sprites/BossEnemy.gif");
+        bossSprite = new Sprite(this, "game/res/sprites/BossEnemy.gif");
         weapons = new Weapon[8];
         weapons[0] = new EnemyGrenadeWeapon(this);
         for (int i = 1; i < 8; i++)

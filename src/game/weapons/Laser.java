@@ -16,7 +16,7 @@ public class Laser extends Projectile {
         super(source, offsetX, offsetY);
         damage = 15;
         range = 50;
-        fireSound = new Sound("src/game/res/sfx/Laser.wav", 0.62f);
+        fireSound = new Sound("game/res/sfx/Laser.wav", 0.62f);
     }
 
     @Override

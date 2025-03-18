@@ -23,14 +23,14 @@ public class SplittingProjectile extends EnemyProjectile {
         fragments = new NormalEnemyProjectile[NUM_FRAGS];
         for (int i = 0; i < NUM_FRAGS; i++)
             fragments[i] = new NormalEnemyProjectile(this, 0, 0);
-        grenadeSprite = new Sprite(this, "src/game/res/sprites/Grenade.gif");
+        grenadeSprite = new Sprite(this, "game/res/sprites/Grenade.gif");
         flash = new FlashFX();
         grenadeSprite.setPostFX(flash);
-        explosionAnim = new Animation(this, "src/game/res/sprites/Explosion1.gif", 1, 10, 50);
+        explosionAnim = new Animation(this, "game/res/sprites/Explosion1.gif", 1, 10, 50);
         explosionAnim.rowAnim("BOOM", 0);
         explosionAnim.setState("BOOM");
-        grenadeSound = new Sound("src/game/res/sfx/Grenade Launch.wav", 0.45f);
-        explosionSound = new Sound("src/game/res/sfx/Explosion 1.wav", 0.5f);
+        grenadeSound = new Sound("game/res/sfx/Grenade Launch.wav", 0.45f);
+        explosionSound = new Sound("game/res/sfx/Explosion 1.wav", 0.5f);
     }
 
     public void draw(Graphics2D g2) {

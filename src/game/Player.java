@@ -33,10 +33,10 @@ public class Player extends DamageEntity {
         weapon = normal;
         weapon.setAim(1, 0);
         discharged = false;
-        chargeSound = new Sound("src/game/res/sfx/Charge Ready.wav", 0.65f);
-        lowHealthSound = new Sound("src/game/res/sfx/Health Low.wav", true, 0.7f);
-        anim = new Animation(this, "src/game/res/sprites/player test.gif", 5, 5); 
-        anim = new Animation(this, "src/game/res/sprites/PlayerSheet.gif", 6, 6, 40, true);
+        chargeSound = new Sound("game/res/sfx/Charge Ready.wav", 0.65f);
+        lowHealthSound = new Sound("game/res/sfx/Health Low.wav", true, 0.7f);
+        anim = new Animation(this, "game/res/sprites/player test.gif", 5, 5); 
+        anim = new Animation(this, "game/res/sprites/PlayerSheet.gif", 6, 6, 40, true);
         anim.rowAnim("Forward", 0);
         anim.rowAnim("ForwardLow", 1);
         anim.rowAnim("Down", 2);
@@ -44,7 +44,7 @@ public class Player extends DamageEntity {
         anim.rowAnim("Up", 4);
         anim.rowAnim("UpLow", 5);
         anim.setState("Forward");
-        background = new Sound("src/game/res/sfx/Background.wav", true, 0.8f);
+        background = new Sound("game/res/sfx/Background.wav", true, 0.8f);
         background.play();
         processor = anim;
     }
