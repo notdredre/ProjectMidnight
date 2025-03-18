@@ -102,6 +102,10 @@ public class Player extends DamageEntity {
         }
     }
     
+    public Weapon getActiveWeapon() {
+        return weapon;
+    }
+    
     public void handleKeyInput(Collection<KeyEvent> events) {
         dx = dy = 0;
         if (health <= 0)

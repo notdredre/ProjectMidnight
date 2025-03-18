@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import game.weapons.NormalWeapon;
+
 public class GameManager implements Drawable, Updatable {
     private static GameManager instance = null;
     private Player player;
@@ -72,7 +74,8 @@ public class GameManager implements Drawable, Updatable {
 
     public void updateScore(int value) {
         score += value;
-        charge += value;
+        if (player.getActiveWeapon() instanceof NormalWeapon)
+            charge += value;
     }
 
     public int getCharge() {
