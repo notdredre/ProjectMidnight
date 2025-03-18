@@ -23,7 +23,7 @@ public class SimpleEnemy extends Enemy {
         weapons[0] = new NormalEnemyWeapon(this);
         weapons[0].setAim(-1, 0);
         moves = new SimpleEnemyMoves(this);
-        enemySprite = new Sprite(this, "src/game/res/sprites/Enemy.gif");
+        enemySprite = new Sprite(this, "game/res/sprites/Enemy.gif");
         value = 100;
         processor = enemySprite;
     }

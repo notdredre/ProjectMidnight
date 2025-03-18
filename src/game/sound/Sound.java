@@ -1,6 +1,5 @@
 package game.sound;
 
-import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -11,9 +10,8 @@ public class Sound {
     private boolean loop;
 
     public Sound(String path, boolean loop, float volume) {
-        File target = new File(path);
         try {
-            AudioInputStream in = AudioSystem.getAudioInputStream(target);
+            AudioInputStream in = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource(path));
             clip = AudioSystem.getClip();
             clip.open(in);
         } catch (Exception e) {
@@ -59,17 +57,6 @@ public class Sound {
             float range = gain.getMaximum() - gain.getMinimum();
             float adjust = (range * volume) + gain.getMinimum();
             gain.setValue(adjust);
-        }
-    }
-
-    public void load(String path) {
-        File target = new File(path);
-        try {
-            AudioInputStream in = AudioSystem.getAudioInputStream(target);
-            clip = AudioSystem.getClip();
-            clip.open(in);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

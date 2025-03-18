@@ -17,8 +17,8 @@ public abstract class DamageEntity extends GameEntity {
 
     public DamageEntity(int x, int y) {
         super(x, y);
-        explosion = new Sound("src/game/res/sfx/Explosion 1.wav", 0.7f);
-        explosionAnim = new Animation(this, "src/game/res/sprites/Explosion1.gif", 1, 10, 33);
+        explosion = new Sound("game/res/sfx/Explosion1.wav", 0.7f);
+        explosionAnim = new Animation(this, "game/res/sprites/Explosion1.gif", 1, 10, 33);
         explosionAnim.rowAnim("BOOM", 0);
         explosionAnim.setState("BOOM");
     }

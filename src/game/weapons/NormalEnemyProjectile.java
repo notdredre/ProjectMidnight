@@ -12,7 +12,7 @@ public class NormalEnemyProjectile extends EnemyProjectile {
         super(source, offsetX, offsetY);
         damage = 2;
         range = 500;
-        fireSound = new Sound("src/game/res/sfx/Normal Weapon.wav", 0.3f);
+        fireSound = new Sound("game/res/sfx/NormalWeapon.wav", 0.3f);
     }
 
     public void fire(int aimX, int aimY) {

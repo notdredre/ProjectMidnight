@@ -11,7 +11,6 @@ import game.graphics.imagefx.ImageFX;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class Animation implements Drawable, PostFX{
     private HashMap<String, ArrayList<BufferedImage>> animMap;
@@ -58,9 +57,8 @@ public class Animation implements Drawable, PostFX{
 
     public void rowAnim(String stateName, int row) {
         ArrayList<BufferedImage> string = new ArrayList<>();
-        File target = new File(path);
         try {
-            BufferedImage in = ImageIO.read(target);
+            BufferedImage in = ImageIO.read(getClass().getClassLoader().getResource(path));
             int width = in.getWidth() / numCols;
             int height = in.getHeight() / numRows;
             for (int i = 0; i < numCols; i++) {
