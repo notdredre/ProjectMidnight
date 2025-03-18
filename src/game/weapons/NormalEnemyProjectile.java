@@ -7,8 +7,8 @@ import game.sound.Sound;
 
 public class NormalEnemyProjectile extends EnemyProjectile {
     private Sound fireSound;
-    public NormalEnemyProjectile(GameEntity source) {
-        super(source);
+    public NormalEnemyProjectile(GameEntity source, int offsetX, int offsetY) {
+        super(source, offsetX, offsetY);
         damage = 2;
         range = 500;
         fireSound = new Sound("src/game/res/sfx/Normal Weapon.wav", 0.3f);

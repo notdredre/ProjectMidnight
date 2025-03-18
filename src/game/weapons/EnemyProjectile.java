@@ -8,8 +8,8 @@ import game.Enemy;
 import game.GameEntity;
 
 public abstract class EnemyProjectile extends Projectile {
-    public EnemyProjectile(GameEntity source) {
-        super(source);
+    public EnemyProjectile(GameEntity source, int offsetX, int offsetY) {
+        super(source, offsetX, offsetY);
     }
 
     public void checkCollisions(Collection<DamageEntity> damageEntities) {

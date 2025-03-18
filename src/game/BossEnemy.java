@@ -89,7 +89,11 @@ public class BossEnemy extends Enemy {
 
     @Override
     public Rectangle2D[] getBounds() {
-        return new Rectangle2D[0];
+        if (health <= 0)
+            return new Rectangle2D[0];
+        Rectangle2D[] bounds = new Rectangle2D[1];
+        bounds[0] = new Rectangle2D.Double(x + 15, y + 10, 25, 28);
+        return bounds;
     }
     
 }

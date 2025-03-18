@@ -17,13 +17,13 @@ public class SplittingProjectile extends EnemyProjectile {
     private FlashFX flash;
     private Sound grenadeSound, explosionSound;
 
-    public SplittingProjectile(GameEntity source) {
-        super(source);
+    public SplittingProjectile(GameEntity source, int offsetX, int offsetY) {
+        super(source, offsetX, offsetY);
         damage = 5;
         range = 110;
         fragments = new NormalEnemyProjectile[NUM_FRAGS];
         for (int i = 0; i < NUM_FRAGS; i++)
-            fragments[i] = new NormalEnemyProjectile(this);
+            fragments[i] = new NormalEnemyProjectile(this, 0, 0);
         grenadeSprite = new Sprite(this, "src/game/res/sprites/Grenade.gif");
         flash = new FlashFX();
         grenadeSprite.setPostFX(flash);

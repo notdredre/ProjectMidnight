@@ -127,7 +127,7 @@ public class Player extends DamageEntity {
 
     public Rectangle2D[] getBounds() {
         Rectangle2D[] bounds = new Rectangle2D[1];
-        bounds[0] = new Rectangle2D.Double(x, y, 10, 10);
+        bounds[0] = new Rectangle2D.Double(x + 6, y + 12, 20, 7);
         return bounds;
     }
 }

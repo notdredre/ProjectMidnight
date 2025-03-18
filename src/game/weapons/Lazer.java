@@ -10,8 +10,8 @@ import game.sound.Sound;
 public class Lazer extends Projectile {
     private Sound fireSound;
 
-    public Lazer(GameEntity source) {
-        super(source);
+    public Lazer(GameEntity source, int offsetX, int offsetY) {
+        super(source, offsetX, offsetY);
         damage = 15;
         range = 50;
         fireSound = new Sound("src/game/res/sfx/Lazer.wav", 0.7f);

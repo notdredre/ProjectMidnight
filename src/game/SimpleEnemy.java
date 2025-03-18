@@ -57,7 +57,7 @@ public class SimpleEnemy extends Enemy {
         if (health <= 0)
             return new Rectangle2D[0];
         Rectangle2D[] bounds = new Rectangle2D[1];
-        bounds[0] = new Rectangle2D.Double(x, y, 10, 10);
+        bounds[0] = new Rectangle2D.Double(x + 3, y + 10, 20, 10);
         return bounds;
     }
 }

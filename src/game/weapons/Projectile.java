@@ -8,14 +8,16 @@ import game.DamageEntity;
 import game.GameEntity;
 
 public abstract class Projectile extends GameEntity implements CollisionChecker {
-    protected int damage, range;
+    protected int damage, range, offsetX, offsetY;
     protected GameEntity source;
     protected boolean isActive;
 
-    public Projectile(GameEntity source) {
+    public Projectile(GameEntity source, int offsetX, int offsetY) {
         super();
         this.source = source;
         isActive = false;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
     }
 
 
@@ -32,8 +34,8 @@ public abstract class Projectile extends GameEntity implements CollisionChecker 
     public void fire(int aimX, int aimY) {
         dx = aimX;
         dy = aimY;
-        x = source.getX();
-        y = source.getY();
+        x = source.getX() + offsetX;
+        y = source.getY() + offsetY;
         isActive = true;
     }
 
