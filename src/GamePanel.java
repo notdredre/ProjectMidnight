@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
                     now = System.currentTimeMillis();
                     gameManager.update();
                     Graphics2D f2 = (Graphics2D) frameBuffer.getGraphics();
-                    f2.setColor(Color.BLACK);
+                    f2.setColor(new Color(30, 40, 60));
                     f2.fillRect(0, 0, 450, 450);
                     gameManager.draw(f2);
                     if (gameManager.isFinished() && player.getHealth() > 0)
