@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Stage implements Updatable {
-    private ArrayList<GameEntity> entities;
+    private ArrayList<DamageEntity> entities;
     private Random rand;
     private int t;
     private final int INTERVAL = 500;
     private GameManager gameManager;
-    private boolean isFinished;
 
     public Stage() {
         entities = new ArrayList<>();
@@ -17,7 +16,6 @@ public class Stage implements Updatable {
         gameManager = GameManager.getGameManager();
         gameManager.addUpdatable(this);
         rand = new Random();
-        isFinished = false;
     }
 
     public void initStage() {
@@ -32,14 +30,9 @@ public class Stage implements Updatable {
         }
     }
 
-    public boolean isFinished() {
-        return isFinished;
-    }
-    
     public void update() {
         t++;
         if (entities.isEmpty()) {
-            isFinished = true;
             return;
         }
         if (t % INTERVAL == 0) {
@@ -49,7 +42,6 @@ public class Stage implements Updatable {
                 entities.get(next).setTicking(true);
                 entities.remove(next);
                 if (entities.isEmpty()) {
-                    isFinished = true;
                     return;
                 }
             }

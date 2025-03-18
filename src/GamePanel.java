@@ -1,6 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.TexturePaint;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import game.GameManager;
 import game.InputHandler;
@@ -19,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Player player;
     private Overlay overlay;
     private Stage stage;
+    private BufferedImage background;
 
     public GamePanel() {
         gameManager = GameManager.getGameManager();
@@ -32,6 +38,13 @@ public class GamePanel extends JPanel implements Runnable {
         runThread = new Thread(this);
         now = System.currentTimeMillis();
         desat = new DesaturationFX();
+        File bgFile = new File("src/game/res/sprites/Background.gif");
+        try {
+            background = ImageIO.read(bgFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
     public void startThread() {
@@ -50,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
                     f2.setColor(Color.BLACK);
                     f2.fillRect(0, 0, 450, 450);
                     gameManager.draw(f2);
-                    if (stage.isFinished() && player.getHealth() > 0)
+                    if (gameManager.isFinished() && player.getHealth() > 0)
                         overlay.setResult(1);
                     if (player.getHealth() == 0) {
                         overlay.setResult(0);

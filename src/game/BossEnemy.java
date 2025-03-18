@@ -20,7 +20,7 @@ public class BossEnemy extends Enemy {
 
     public BossEnemy(int x, int y) {
         super(x, y);
-        health = 100;
+        health = 60;
         bossSprite = new Sprite(this, "src/game/res/sprites/BossEnemy.gif");
         weapons = new Weapon[8];
         weapons[0] = new EnemyGrenadeWeapon(this);
@@ -44,6 +44,10 @@ public class BossEnemy extends Enemy {
 
     @Override
     public void draw(Graphics2D g2) {
+        if (health <= 0) {
+            explosionAnim.draw(g2);
+            return;
+        }
         bossSprite.draw(g2);
     }
 
