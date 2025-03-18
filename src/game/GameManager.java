@@ -12,7 +12,7 @@ public class GameManager implements Drawable, Updatable {
     private ArrayList<Updatable> updatables;
     private ArrayList<TargetPlayer> targetPlayers;
     private Vector<CollisionChecker> collisionCheckers;
-    private int score;
+    private int score, charge;
 
     private GameManager() {
         gameEntities = new Vector<>();
@@ -21,6 +21,7 @@ public class GameManager implements Drawable, Updatable {
         damageEntities = new ArrayList<>();
         collisionCheckers = new Vector<>();
         score = 0;
+        charge = 0;
     }
 
     public static GameManager getGameManager() {
@@ -61,8 +62,17 @@ public class GameManager implements Drawable, Updatable {
 
     public void updateScore(int value) {
         score += value;
+        charge += value;
     }
 
+    public int getCharge() {
+        return charge;
+    }
+
+    public void discharge() {
+        charge--;
+    }
+    
     public int getScore() {
         return score;
     }

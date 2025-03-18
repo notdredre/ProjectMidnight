@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel() {
         gameManager = GameManager.getGameManager();
         frameBuffer = new BufferedImage(450, 450, BufferedImage.TYPE_INT_ARGB);
-        player = new Player();
+        player = new Player(50, 215);
         addKeyListener(new InputHandler(player));
         Stage stage = new Stage();
         overlay = new Overlay();
