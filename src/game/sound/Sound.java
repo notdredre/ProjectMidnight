@@ -11,6 +11,8 @@ public class Sound {
     private boolean loop;
 
     public Sound(String path, boolean loop, float volume) {
+        getClass().getClassLoader();
+        path = ClassLoader.getSystemResource(path).getPath();
         File target = new File(path);
         try {
             AudioInputStream in = AudioSystem.getAudioInputStream(target);

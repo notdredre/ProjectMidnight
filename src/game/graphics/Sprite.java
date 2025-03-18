@@ -19,7 +19,7 @@ public class Sprite implements Drawable, PostFX {
 
     public Sprite(GameEntity owner, String path) {
         this.owner = owner;
-        this.path = path;
+        this.path = getClass().getClassLoader().getResource(path).getPath();
         post = null;
         loadSprite();
     }

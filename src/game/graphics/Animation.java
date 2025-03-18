@@ -28,7 +28,7 @@ public class Animation implements Drawable, PostFX{
         step = -1;
         now = System.currentTimeMillis();
         this.owner = owner;
-        this.path = path;
+        this.path = getClass().getClassLoader().getResource(path).getPath();
         this.numCols = numCols;
         this.numRows = numRows;
         modifier = "";
