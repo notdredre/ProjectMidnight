@@ -2,7 +2,6 @@ package game.graphics;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 import javax.imageio.ImageIO;
 
@@ -19,15 +18,14 @@ public class Sprite implements Drawable, PostFX {
 
     public Sprite(GameEntity owner, String path) {
         this.owner = owner;
-        this.path = getClass().getClassLoader().getResource(path).getPath();
+        this.path = path;
         post = null;
         loadSprite();
     }
 
     private void loadSprite() {
         try {
-            File in = new File(path);
-            spriteImage = ImageIO.read(in);
+            spriteImage = ImageIO.read(getClass().getClassLoader().getResource(path));
         } catch (Exception e) {
             e.printStackTrace();
         }
